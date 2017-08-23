@@ -1,0 +1,100 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.shopping.hanxiao.shopping.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent_bg_color"
+        android:fitsSystemWindows="true"
+        app:elevation="0dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_tool_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <com.shopping.hanxiao.shopping.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:delay_time="5000"
+                app:image_scale_type="fit_xy" />
+
+            <View
+                android:id="@+id/toolbar_background"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorWhite"
+                app:layout_collapseMode="pin" />
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tool_bar"
+                android:layout_width="290dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="@dimen/base_padding_normal"
+                android:layout_marginRight="@dimen/base_padding_normal"
+                android:layout_marginTop="@dimen/base_padding_extra_small"
+                android:background="@drawable/search_baground_shap"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/explore_search_icon">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="搜索" />
+
+            </android.support.v7.widget.Toolbar>
+
+            <ImageView
+                android:id="@+id/img_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/base_padding_small"
+                android:paddingBottom="@dimen/base_padding_extra_small"
+                android:paddingLeft="@dimen/base_padding_normal"
+                android:paddingRight="@dimen/base_padding_normal"
+                android:paddingTop="@dimen/base_padding_two_dp"
+                android:src="@drawable/help_icon_origin"
+                app:layout_collapseMode="pin" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            app:tabIndicatorColor="@color/colorRed"
+            app:tabSelectedTextColor="@color/colorRed"
+            app:tabTextColor="@color/base_main_text_color1" />
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/body_area_bg_color"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    </android.support.v4.view.ViewPager>
+
+    <TextView
+        android:id="@+id/refresh_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/load_retry"
+        android:textColor="@color/colorRed"
+        android:visibility="gone" />
+</android.support.design.widget.CoordinatorLayout>

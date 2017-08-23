@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/body_area_bg_color"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/base_padding_middle_small"
+    tools:context="com.shopping.hanxiao.shopping.business.BaseActivity">
+
+    <TextView
+        android:id="@+id/header_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:paddingBottom="@dimen/base_padding_middle_small"
+        android:paddingLeft="@dimen/base_padding_extra_small"
+        android:paddingTop="@dimen/base_padding_small"
+        android:text="|热门好货"
+        android:textColor="@color/base_main_text_color3"
+        android:textSize="@dimen/base_main_text_size1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/base_padding_extra_little">
+
+        <FrameLayout
+            android:id="@+id/item_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/base_padding_extra_small"
+            android:paddingRight="@dimen/base_padding_extra_small">
+
+            <ImageView
+                android:id="@+id/item_img1"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:alpha="0.3"
+                android:background="@drawable/imageview_circle_shape"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/item_cover_img_desc1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="@dimen/base_padding_extra_little"
+                android:paddingRight="@dimen/base_padding_extra_little"
+                android:singleLine="true"
+                android:text="活动精品"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_main_text_size2" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/item_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/base_padding_extra_small">
+
+            <ImageView
+                android:id="@+id/item_img2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:alpha="0.3"
+                android:background="@drawable/imageview_circle_shape"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/item_cover_img_desc2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="@dimen/base_padding_extra_little"
+                android:paddingRight="@dimen/base_padding_extra_little"
+                android:singleLine="true"
+                android:text="活动精品"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_main_text_size2" />
+
+        </FrameLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/base_padding_small">
+
+        <FrameLayout
+            android:id="@+id/item_layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/base_padding_extra_small"
+            android:paddingRight="@dimen/base_padding_extra_small">
+
+            <ImageView
+                android:id="@+id/item_img3"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:alpha="0.3"
+                android:background="@drawable/imageview_circle_shape"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/item_cover_img_desc3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="@dimen/base_padding_extra_little"
+                android:paddingRight="@dimen/base_padding_extra_little"
+                android:singleLine="true"
+                android:text="活动精品"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_main_text_size2" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/item_layout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/base_padding_extra_small">
+
+            <ImageView
+                android:id="@+id/item_img4"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:alpha="0.3"
+                android:background="@drawable/imageview_circle_shape"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/item_cover_img_desc4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="@dimen/base_padding_extra_little"
+                android:paddingRight="@dimen/base_padding_extra_little"
+                android:singleLine="true"
+                android:text="活动精品"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_main_text_size2" />
+
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

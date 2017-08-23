@@ -1,0 +1,137 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp"
+    android:background="@color/colorWhite"
+    card_view:cardUseCompatPadding="true"
+    tools:context="com.shopping.hanxiao.shopping.business.BaseActivity">
+
+    <TextView
+        android:id="@+id/item_platform_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/base_padding_small"
+        android:layout_marginTop="@dimen/base_padding_one_dp"
+        android:background="@color/colorRed"
+        android:paddingLeft="@dimen/base_padding_one_dp"
+        android:paddingRight="@dimen/base_padding_one_dp"
+        android:textColor="@color/colorWhite"
+        android:visibility="gone"
+        tools:text="最新折扣" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/item_platform_img"
+        android:layout_marginLeft="@dimen/base_padding_small"
+        android:layout_marginTop="@dimen/base_padding_small">
+
+        <ImageView
+            android:id="@+id/item_discount_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="@dimen/base_padding_extra_small"
+            android:adjustViewBounds="true"
+            android:paddingTop="@dimen/base_padding_extra_little"
+            android:scaleType="fitXY" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/item_discount_img"
+            android:paddingRight="@dimen/base_padding_extra_little">
+
+            <TextView
+                android:id="@+id/item_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:maxLines="1"
+                android:textSize="@dimen/base_main_text_size1"
+                tools:text="大甩卖" />
+
+            <TextView
+                android:id="@+id/item_content_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_title_tv"
+                android:layout_centerHorizontal="true"
+                android:maxLines="5"
+                android:paddingTop="@dimen/base_padding_extra_little"
+                android:textColor="@color/base_main_text_hint_color"
+                android:textSize="@dimen/base_main_text_size3"
+                tools:text="送券大甩卖00000009999好的不得了app哈哈哈000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/item_desc_tv"
+                android:layout_marginBottom="@dimen/base_padding_extra_small"
+                android:layout_marginTop="@dimen/base_padding_extra_little"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/item_coupon_price_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/base_main_text_title_size"
+                        android:visibility="gone"
+                        tools:text="￥77" />
+
+                    <TextView
+                        android:id="@+id/item_origin_price_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_padding_extra_small"
+                        android:textSize="@dimen/base_main_text_size1"
+                        android:visibility="gone"
+                        tools:text="￥99" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/item_coupon_note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/base_padding_extra_small"
+                        android:text="为您节省:"
+                        android:textSize="@dimen/base_main_text_size3"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/item_coupon_value_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/item_coupon_note"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/base_main_text_size3"
+                        android:visibility="gone"
+                        tools:text="7折" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shopping.hanxiao.shopping.business.BaseActivity">
+
+    <!-- title area -->
+    <RelativeLayout
+        android:id="@+id/base_layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_title_bar_height"
+        android:background="@drawable/base_title_bg"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/title_left_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="@dimen/base_padding_normal"
+            android:paddingRight="@dimen/base_padding_normal"
+            android:scaleType="center" />
+
+        <TextView
+            android:id="@+id/title_center_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:maxWidth="180dp"
+            android:singleLine="true"
+            android:textColor="@color/base_main_text_color1"
+            android:textSize="@dimen/base_main_text_title_size"
+            tools:text="优惠券专区" />
+
+        <TextView
+            android:id="@+id/title_right_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:paddingLeft="@dimen/base_padding_normal"
+            android:paddingRight="@dimen/base_padding_normal"
+            android:scaleType="center"
+            android:textColor="@color/base_main_text_color2"
+            android:textSize="@dimen/base_main_text_size2"
+            tools:text="xxx" />
+
+    </RelativeLayout>
+
+    <!-- body area -->
+    <FrameLayout
+        android:id="@+id/base_layout_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/base_layout_title" />
+
+</RelativeLayout>

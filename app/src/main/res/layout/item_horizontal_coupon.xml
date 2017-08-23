@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/base_padding_extra_small"
+    android:layout_marginTop="@dimen/base_padding_middle_small"
+    android:gravity="center"
+    card_view:cardUseCompatPadding="true"
+    tools:context="com.shopping.hanxiao.shopping.business.BaseActivity">
+
+    <ImageView
+        android:id="@+id/item_commodity_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY" />
+
+
+    <TextView
+        android:id="@+id/item_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_commodity_img"
+        android:layout_centerHorizontal="true"
+        android:maxLines="1"
+        android:paddingTop="@dimen/base_padding_extra_small"
+        tools:text="￥20" />
+
+
+</RelativeLayout>

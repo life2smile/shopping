@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/base_padding_extra_little"
+    tools:context="com.shopping.hanxiao.shopping.business.BaseActivity">
+
+    <LinearLayout
+        android:id="@+id/item_layout1"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingRight="@dimen/base_padding_extra_small">
+
+        <ImageView
+            android:id="@+id/item_img"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/item_cover_img_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:text="活动精品"
+            android:textSize="@dimen/base_main_text_size2" />
+    </LinearLayout>
+</LinearLayout>

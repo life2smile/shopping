@@ -1,0 +1,219 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/base_padding_middle_small"
+    tools:context="com.shopping.hanxiao.shopping.business.BaseActivity">
+
+    <View
+        android:layout_width="match_parent"
+
+        android:layout_height="1px"
+        android:background="@color/view_divider_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--左边第一个图片，占两行-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_fix_five_large_height"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/base_padding_middle_small"
+            android:paddingTop="@dimen/base_padding_middle_small">
+
+            <ImageView
+                android:id="@+id/img_left"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_fix_five_larger_height"
+                android:paddingLeft="@dimen/base_padding_extra_small"
+                android:paddingRight="@dimen/base_padding_extra_small"
+                android:scaleType="fitXY"
+                tools:src="@drawable/cb_icon_guanzhu_normal" />
+
+            <TextView
+                android:id="@+id/tv_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="@dimen/base_padding_extra_small"
+                android:paddingRight="@dimen/base_padding_extra_small"
+                android:singleLine="true"
+                tools:text="发现好货" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+
+            android:layout_height="240dp"
+            android:background="@color/view_divider_color" />
+
+        <!--右边占据四行四列的四个图片-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!--上面两幅图片-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/base_padding_middle_small">
+
+                    <ImageView
+                        android:id="@+id/img_right_top_left"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/item_fix_five_short_height"
+                        android:paddingLeft="@dimen/base_padding_extra_small"
+                        android:paddingRight="@dimen/base_padding_extra_small"
+                        android:scaleType="fitXY"
+                        tools:src="@drawable/cb_icon_guanzhu_normal" />
+
+                    <TextView
+                        android:id="@+id/tv_right_top_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="@dimen/base_padding_extra_small"
+                        android:paddingRight="@dimen/base_padding_extra_small"
+                        android:singleLine="true"
+                        tools:text="发现好货" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+
+                    android:layout_height="match_parent"
+                    android:background="@color/view_divider_color" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/base_padding_middle_small">
+
+                    <ImageView
+                        android:id="@+id/img_right_top_right"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/item_fix_five_short_height"
+                        android:paddingLeft="@dimen/base_padding_extra_small"
+                        android:paddingRight="@dimen/base_padding_extra_small"
+                        android:scaleType="fitXY"
+                        tools:src="@drawable/cb_icon_guanzhu_normal" />
+
+                    <TextView
+                        android:id="@+id/tv_right_top_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="@dimen/base_padding_extra_small"
+                        android:paddingRight="@dimen/base_padding_extra_small"
+                        android:singleLine="true"
+                        tools:text="发现好货" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+
+                android:layout_height="1px"
+                android:background="@color/view_divider_color" />
+            <!--下面两幅图片-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/base_padding_middle_small">
+
+                    <ImageView
+                        android:id="@+id/img_right_bottom_left"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/item_fix_five_short_height"
+                        android:paddingLeft="@dimen/base_padding_extra_small"
+                        android:paddingRight="@dimen/base_padding_extra_small"
+                        android:scaleType="fitXY"
+                        tools:src="@drawable/cb_icon_guanzhu_normal" />
+
+                    <TextView
+                        android:id="@+id/tv_right_bottom_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="@dimen/base_padding_extra_small"
+                        android:paddingRight="@dimen/base_padding_extra_small"
+                        android:singleLine="true"
+                        tools:text="发现好货" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+
+                    android:layout_height="match_parent"
+                    android:background="@color/view_divider_color" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/base_padding_middle_small">
+
+                    <ImageView
+                        android:id="@+id/img_right_bottom_right"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/item_fix_five_short_height"
+                        android:paddingLeft="@dimen/base_padding_extra_small"
+                        android:paddingRight="@dimen/base_padding_extra_small"
+                        android:scaleType="fitXY"
+                        tools:src="@drawable/cb_icon_guanzhu_normal" />
+
+                    <TextView
+                        android:id="@+id/tv_right_bottom_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="@dimen/base_padding_extra_small"
+                        android:paddingRight="@dimen/base_padding_extra_small"
+                        android:singleLine="true"
+                        tools:text="发现好货" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/view_divider_color" />
+
+</LinearLayout>

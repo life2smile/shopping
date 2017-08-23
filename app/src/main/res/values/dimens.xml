@@ -1,0 +1,28 @@
+<resources>
+    <dimen name="base_padding_one_dp">1dp</dimen>
+    <dimen name="base_padding_two_dp">2dp</dimen>
+    <dimen name="base_padding_extra_little">3dp</dimen>
+    <dimen name="base_padding_extra_small">5dp</dimen>
+    <dimen name="base_padding_middle_small">8dp</dimen>
+    <dimen name="base_padding_small">10dp</dimen>
+    <dimen name="base_padding_normal">15dp</dimen>
+    <dimen name="base_padding_normal_larger">18dp</dimen>
+    <dimen name="base_padding_large">20dp</dimen>
+    <dimen name="base_padding_extra_large">30dp</dimen>
+
+    <dimen name="base_main_text_big">30sp</dimen>
+    <dimen name="base_main_text_middle_big">25sp</dimen>
+    <dimen name="base_main_text_little_big">20sp</dimen>
+    <dimen name="base_main_text_title_size">18sp</dimen>
+    <dimen name="base_main_text_size1">16sp</dimen>
+    <dimen name="base_main_text_size2">14sp</dimen>
+    <dimen name="base_main_text_size3">12sp</dimen>
+    <dimen name="base_main_text_size4">11sp</dimen>
+    <dimen name="base_title_bar_height">45dp</dimen>
+
+    <dimen name="item_fix_five_short_height">80dp</dimen>
+    <dimen name="item_fix_five_larger_height">200dp</dimen>
+    <dimen name="item_fix_five_large_height">240dp</dimen>
+
+
+</resources>

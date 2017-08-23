@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/body_area_bg_color"
+    android:paddingTop="@dimen/base_padding_middle_small">
+
+    <TextView
+        android:id="@+id/header_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:paddingBottom="@dimen/base_padding_middle_small"
+        android:paddingLeft="@dimen/base_padding_extra_small"
+        android:paddingTop="@dimen/base_padding_small"
+        android:text="|为您推荐"
+        android:textColor="@color/base_main_text_color3"
+        android:textSize="@dimen/base_main_text_size1" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_text"
+        android:background="@color/colorWhite"
+        android:paddingBottom="@dimen/base_padding_extra_small"
+        android:paddingLeft="@dimen/base_padding_extra_small"
+        android:paddingRight="@dimen/base_padding_extra_small"
+        android:scrollbars="none" />
+
+</RelativeLayout>
