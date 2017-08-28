@@ -12,12 +12,18 @@ import com.shopping.hanxiao.shopping.common.transformation.RotateTransformation;
 
 public class GlideImageLoader extends ImageLoader {
     private float mRotate = 0;
+    private boolean mRotateOnlyHGreaterThanW;
 
     public GlideImageLoader() {
     }
 
     public GlideImageLoader(float rotate) {
         this.mRotate = rotate;
+    }
+
+    public GlideImageLoader(float rotate, boolean rotateWGreaterThanH) {
+        this.mRotate = rotate;
+        this.mRotateOnlyHGreaterThanW = rotateWGreaterThanH;
     }
 
     @Override
@@ -27,7 +33,7 @@ public class GlideImageLoader extends ImageLoader {
                 .load(path)
                 .crossFade()
                 .fitCenter()
-                .transform(new RotateTransformation(context, mRotate))
+                .transform(new RotateTransformation(context, mRotate, mRotateOnlyHGreaterThanW))
                 .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                 .error(R.drawable.img_empty)
                 .into(imageView);

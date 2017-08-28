@@ -18,7 +18,6 @@ public abstract class BaseFragment extends Fragment {
     private TextView mTitleTv;
     private RelativeLayout mLayout;
     private View mView;
-    private boolean lockRequest;
 
     @Nullable
     @Override
@@ -78,14 +77,6 @@ public abstract class BaseFragment extends Fragment {
         if (mLayout != null) {
             mLayout.setVisibility(View.VISIBLE);
         }
-    }
-
-    protected void lockRequest() {
-        lockRequest = true;
-    }
-
-    protected void unLockRequest() {
-        lockRequest = false;
     }
 
     protected void requestDataFromServer() {

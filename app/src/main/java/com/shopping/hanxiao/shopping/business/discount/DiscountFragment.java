@@ -246,7 +246,7 @@ public class DiscountFragment extends BaseFragment {
         }
         //简单使用
         mTopBanner.setImages(imagUrls)
-                .setImageLoader(new GlideImageLoader(90))
+                .setImageLoader(new GlideImageLoader(90, true))
                 .setOnBannerListener(new OnBannerListener() {
                     @Override
                     public void OnBannerClick(int position) {

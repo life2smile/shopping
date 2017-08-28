@@ -275,7 +275,7 @@ public class PromotionFragment extends BaseFragment {
         }
 
         mTopBanner.setImages(imagUrls)
-                .setImageLoader(new GlideImageLoader(90))
+                .setImageLoader(new GlideImageLoader(90, true))
                 .setOnBannerListener(new OnBannerListener() {
                     @Override
                     public void OnBannerClick(int position) {

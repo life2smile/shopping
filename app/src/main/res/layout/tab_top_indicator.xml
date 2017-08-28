@@ -38,7 +38,7 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tool_bar"
-                android:layout_width="290dp"
+                android:layout_width="305dp"
                 android:layout_height="35dp"
                 android:layout_marginLeft="@dimen/base_padding_normal"
                 android:layout_marginRight="@dimen/base_padding_normal"
@@ -56,16 +56,16 @@
 
             <ImageView
                 android:id="@+id/img_help"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_gravity="right"
+                android:layout_marginLeft="@dimen/base_padding_extra_small"
+                android:layout_marginRight="@dimen/base_padding_middle_small"
                 android:layout_marginTop="@dimen/base_padding_small"
-                android:paddingBottom="@dimen/base_padding_extra_small"
-                android:paddingLeft="@dimen/base_padding_normal"
-                android:paddingRight="@dimen/base_padding_normal"
-                android:paddingTop="@dimen/base_padding_two_dp"
-                android:src="@drawable/help_icon_origin"
-                app:layout_collapseMode="pin" />
+                android:background="@drawable/help_icon_origin"
+                android:visibility="gone"
+                app:layout_collapseMode="pin"
+                tools:visibility="visible" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 

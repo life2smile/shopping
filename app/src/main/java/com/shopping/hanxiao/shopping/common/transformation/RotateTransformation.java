@@ -14,14 +14,27 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 public class RotateTransformation extends BitmapTransformation {
 
     private float mRotate;
+    private boolean mRotateOnlyHGreaterThanW;//只有当Width > height的时候进行选择
 
     public RotateTransformation(Context context, float rotate) {
         super(context);
         this.mRotate = rotate;
     }
 
+    public RotateTransformation(Context context, float rotate, boolean rotateWGreaterThanH) {
+        super(context);
+        this.mRotate = rotate;
+        this.mRotateOnlyHGreaterThanW = rotateWGreaterThanH;
+    }
+
     @Override
     protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+        if (mRotateOnlyHGreaterThanW) {
+            mRotate = toTransform.getHeight() > toTransform.getWidth() ? mRotate : 0;
+        }
+
+        System.out.println(toTransform.getHeight() + "------------------" + toTransform.getWidth());
+
         Matrix matrix = new Matrix();
         matrix.postRotate(mRotate);
         return Bitmap.createBitmap(toTransform, 0, 0, toTransform.getWidth(), toTransform.getHeight(), matrix, true);

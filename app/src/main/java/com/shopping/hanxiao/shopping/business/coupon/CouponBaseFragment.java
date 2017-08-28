@@ -92,6 +92,7 @@ public class CouponBaseFragment extends BaseFragment {
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 float bannerHeight = mTopBanner.getMeasuredHeight() - mToobarBackground.getMeasuredHeight() - ScreenInfoUtil.dpToPx(5);
                 verticalOffset = Math.abs(verticalOffset);
+                mHelpImg.setVisibility(verticalOffset > bannerHeight ? View.VISIBLE : View.GONE);
                 if (verticalOffset == 0) {
                     mToobarBackground.setAlpha(0);
                     return;
@@ -174,7 +175,7 @@ public class CouponBaseFragment extends BaseFragment {
         }
         //简单使用
         mTopBanner.setImages(imagUrls)
-                .setImageLoader(new GlideImageLoader(90))
+                .setImageLoader(new GlideImageLoader(90, true))
                 .setOnBannerListener(new OnBannerListener() {
                     @Override
                     public void OnBannerClick(int position) {
