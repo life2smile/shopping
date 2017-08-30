@@ -264,7 +264,7 @@ public class DiscountFragment extends BaseFragment {
     }
 
     private void initHelpIcon(TextView rightView) {
-        Drawable drawable = getResources().getDrawable(R.drawable.help_icon);
+        Drawable drawable = getResources().getDrawable(R.drawable.help_icon_origin);
         rightView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
         rightView.setPadding(ScreenInfoUtil.dpToPx(14), 0, ScreenInfoUtil.dpToPx(14), 0);
         rightView.setOnClickListener(new View.OnClickListener() {
@@ -285,5 +285,13 @@ public class DiscountFragment extends BaseFragment {
     @Override
     protected void customRightView(TextView rightView) {
         initHelpIcon(rightView);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(mTopBanner != null){
+            mTopBanner.releaseBanner();
+        }
     }
 }

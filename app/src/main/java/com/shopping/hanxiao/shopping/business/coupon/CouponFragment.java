@@ -1,4 +1,4 @@
-package com.shopping.hanxiao.shopping.business.coupon.childfragments;
+package com.shopping.hanxiao.shopping.business.coupon;
 
 
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -14,9 +13,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.shopping.hanxiao.shopping.R;
 import com.shopping.hanxiao.shopping.business.BaseFragment;
-import com.shopping.hanxiao.shopping.business.coupon.CouponAdapter;
-import com.shopping.hanxiao.shopping.business.coupon.api.CommodityApi;
-import com.shopping.hanxiao.shopping.business.coupon.data.CouponData;
 import com.shopping.hanxiao.shopping.rxretrofit.exception.ApiException;
 import com.shopping.hanxiao.shopping.rxretrofit.http.HttpManager;
 import com.shopping.hanxiao.shopping.rxretrofit.listener.HttpOnNextListener;
@@ -29,7 +25,7 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
  * Created by wenzhi on 17/6/17.
  */
 
-public class CommodityFragment extends BaseFragment {
+public class CouponFragment extends BaseFragment {
 
     private final static int spanNum = 2;
     private RecyclerView mRecyclerView;
@@ -43,8 +39,8 @@ public class CommodityFragment extends BaseFragment {
     private boolean mLoadMore;
     private TextView mRefreshTv;
 
-    public static CommodityFragment newInstance(String type) {
-        CommodityFragment fragment = new CommodityFragment();
+    public static CouponFragment newInstance(String type) {
+        CouponFragment fragment = new CouponFragment();
         Bundle args = new Bundle();
         args.putString("type", type);
         fragment.setArguments(args);
@@ -110,7 +106,7 @@ public class CommodityFragment extends BaseFragment {
 
     @Override
     protected void requestDataFromServer() {
-        CommodityApi commodityApi = new CommodityApi(mType, mBegin, mOffset);
+        CouponApi commodityApi = new CouponApi(mType, mBegin, mOffset);
         HttpManager manager = new HttpManager(new HttpOnNextListener() {
             @Override
             public void onNext(String result, String method) {
@@ -128,7 +124,7 @@ public class CommodityFragment extends BaseFragment {
 
             @Override
             public void onError(ApiException e) {
-                if (!TextUtils.isEmpty(mType) || mType == "0") {
+                if ("0".equals(mType)) {
                     ToastUtil.toast(getActivity(), ErrorUtils.ERROR_MSG);
                 }
                 recoveryViewStatus();

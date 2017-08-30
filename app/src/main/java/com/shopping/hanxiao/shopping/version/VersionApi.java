@@ -1,6 +1,5 @@
 package com.shopping.hanxiao.shopping.version;
 
-import com.shopping.hanxiao.shopping.ShoppingApplication;
 import com.shopping.hanxiao.shopping.business.RequestApi;
 import com.shopping.hanxiao.shopping.utils.VersionUtil;
 
@@ -13,6 +12,11 @@ import rx.Observable;
  */
 
 public class VersionApi extends RequestApi {
+    private String mDeviceId;
+
+    public VersionApi(String deviceId) {
+        this.mDeviceId = deviceId;
+    }
 
     @Override
     public void setShowProgress(boolean showProgress) {
@@ -24,7 +28,7 @@ public class VersionApi extends RequestApi {
 
         VersionRequestParams params = new VersionRequestParams();
         params.version = VersionUtil.version;
-        params.deviceId = ShoppingApplication.deviceId;
+        params.deviceId = mDeviceId;
         return params;
     }
 

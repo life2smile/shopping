@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.shopping.hanxiao.shopping.R;
 import com.shopping.hanxiao.shopping.business.coupon.CouponAdapter;
-import com.shopping.hanxiao.shopping.business.coupon.data.CouponData;
+import com.shopping.hanxiao.shopping.business.coupon.CouponData;
 import com.shopping.hanxiao.shopping.rxretrofit.exception.ApiException;
 import com.shopping.hanxiao.shopping.rxretrofit.http.HttpManager;
 import com.shopping.hanxiao.shopping.rxretrofit.listener.HttpOnNextListener;

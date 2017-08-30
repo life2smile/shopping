@@ -1,17 +1,25 @@
 package com.shopping.hanxiao.shopping.common;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.http.SslError;
 import android.os.Build;
+import android.text.TextUtils;
+import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.shopping.hanxiao.shopping.R;
 import com.shopping.hanxiao.shopping.business.BaseActivity;
+import com.shopping.hanxiao.shopping.utils.ScreenInfoUtil;
 
 /**
  * Created by wenzhi on 17/6/26.
@@ -19,7 +27,12 @@ import com.shopping.hanxiao.shopping.business.BaseActivity;
 
 public class WebViewActivity extends BaseActivity {
     private WebView mWebView;
+    private boolean mShowTitleBar;
     private SlowlyProgressBar mSlowlyProgressBar;
+    private String mUri;
+    private String mTitle;
+    private int mLeftImageResId;
+    private int mRightImageResId;
 
     @Override
     protected int getContentLayout() {
@@ -28,8 +41,51 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        final String uri = getIntent().getStringExtra("shopping_uri");
+        initTitleBar();
+        initWebView();
+    }
 
+    private void initTitleBar() {
+        if (mShowTitleBar) {
+            RelativeLayout mTitleLayout = (RelativeLayout) findViewById(R.id.base_layout_title);
+            mTitleLayout.setVisibility(View.VISIBLE);
+            if (!TextUtils.isEmpty(mTitle)) {
+                TextView title = (TextView) findViewById(R.id.title_center_title);
+                title.setText(mTitle);
+            }
+
+            if (mLeftImageResId != 0) {
+                ImageView mLeftImg = (ImageView) findViewById(R.id.title_left_btn);
+                mLeftImg.setImageResource(mLeftImageResId);
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                        ScreenInfoUtil.dpToPx(50), ScreenInfoUtil.dpToPx(50)
+                );
+                params.addRule(RelativeLayout.CENTER_VERTICAL);
+                mLeftImg.setLayoutParams(params);
+                mLeftImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+            }
+
+            if (mRightImageResId != 0) {
+                TextView mRightImg = (TextView) findViewById(R.id.title_right_btn);
+                Drawable rightDrawable = getResources().getDrawable(mRightImageResId);
+                mRightImg.setCompoundDrawablesWithIntrinsicBounds(rightDrawable, null, null, null);
+                mRightImg.setPadding(ScreenInfoUtil.dpToPx(14), 0, ScreenInfoUtil.dpToPx(14), 0);
+                mRightImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //do nothing
+                    }
+                });
+            }
+        }
+    }
+
+    private void initWebView() {
         mSlowlyProgressBar = new SlowlyProgressBar((ProgressBar) findViewById(R.id.progressBar));
         mWebView = (WebView) findViewById(R.id.web_content);
         mWebView.getSettings().setJavaScriptEnabled(true);
@@ -58,7 +114,18 @@ public class WebViewActivity extends BaseActivity {
                 handler.proceed();
             }
         });
-        mWebView.loadUrl(uri);
+        mWebView.loadUrl(mUri);
+    }
+
+    @Override
+    protected void initDataFromIntent(Intent intent) {
+        this.mUri = intent.getStringExtra(WebViewContext.URI);
+        this.mTitle = intent.getStringExtra(WebViewContext.TITLE);
+        this.mLeftImageResId = intent.getIntExtra(WebViewContext.LEFT_IMAGE_RES_ID, 0);
+        this.mRightImageResId = intent.getIntExtra(WebViewContext.RIGHT_IMAGE_RES_ID, 0);
+        this.mShowTitleBar = !TextUtils.isEmpty(mTitle)
+                || mLeftImageResId != 0
+                || mRightImageResId != 0;
     }
 
     @Override

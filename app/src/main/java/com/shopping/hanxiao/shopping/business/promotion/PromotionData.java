@@ -13,5 +13,6 @@ public class PromotionData {
     public List<TopBannerData> topBanner;
     public List<CustomItemData> twoItems;
     public List<CustomItemData> heightItems;
+    public List<CustomItemData> nextHeightItems;
     public boolean hasMore;
 }

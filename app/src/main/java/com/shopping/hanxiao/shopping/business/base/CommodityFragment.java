@@ -1,4 +1,4 @@
-package com.shopping.hanxiao.shopping.business.coupon;
+package com.shopping.hanxiao.shopping.business.base;
 
 
 import android.content.Intent;
@@ -20,9 +20,11 @@ import com.shopping.hanxiao.shopping.banner.Banner;
 import com.shopping.hanxiao.shopping.banner.listener.OnBannerListener;
 import com.shopping.hanxiao.shopping.business.BaseFragment;
 import com.shopping.hanxiao.shopping.business.TopBannerData;
-import com.shopping.hanxiao.shopping.business.coupon.api.TitleApi;
-import com.shopping.hanxiao.shopping.business.coupon.childfragments.CommodityFragment;
-import com.shopping.hanxiao.shopping.business.coupon.data.CouponItemTitle;
+import com.shopping.hanxiao.shopping.business.coupon.CouponFragment;
+import com.shopping.hanxiao.shopping.business.titles.TitleApi;
+import com.shopping.hanxiao.shopping.business.coupon.CouponItemTitle;
+import com.shopping.hanxiao.shopping.common.WebViewActivity;
+import com.shopping.hanxiao.shopping.common.WebViewContext;
 import com.shopping.hanxiao.shopping.common.search.SearchActivity;
 import com.shopping.hanxiao.shopping.loader.GlideImageLoader;
 import com.shopping.hanxiao.shopping.rxretrofit.exception.ApiException;
@@ -43,7 +45,7 @@ import java.util.List;
  * Created by wenzhi on 17/6/17.
  */
 
-public class CouponBaseFragment extends BaseFragment {
+public class CommodityFragment extends BaseFragment {
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -55,7 +57,7 @@ public class CouponBaseFragment extends BaseFragment {
     private ImageView mHelpImg;
 
     public static BaseFragment newInstance() {
-        return new CouponBaseFragment();
+        return new CommodityFragment();
     }
 
     @Override
@@ -116,6 +118,12 @@ public class CouponBaseFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), SearchActivity.class));
             }
         });
+        mToobarBackground.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //do nothing
+            }
+        });
     }
 
     @Override
@@ -127,7 +135,7 @@ public class CouponBaseFragment extends BaseFragment {
         HttpManager manager = new HttpManager(new HttpOnNextListener() {
             @Override
             public void onNext(String result, String method) {
-                CouponBaseData baseData = JSON.parseObject(result, CouponBaseData.class);
+                CommodityBaseData baseData = JSON.parseObject(result, CommodityBaseData.class);
                 updateViews(baseData);
             }
 
@@ -141,12 +149,12 @@ public class CouponBaseFragment extends BaseFragment {
         manager.doHttpDeal(new TitleApi());
     }
 
-    private void updateViews(CouponBaseData data) {
+    private void updateViews(CommodityBaseData data) {
         ArrayList<Fragment> fragments = new ArrayList<>();
         ArrayList<String> titles = new ArrayList<>();
         for (CouponItemTitle itemTitle : data.titles) {
             titles.add(itemTitle.title);
-            fragments.add(CommodityFragment.newInstance(itemTitle.type));
+            fragments.add(CouponFragment.newInstance(itemTitle.type));
         }
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), getActivity(),
                 fragments, titles);
@@ -161,7 +169,12 @@ public class CouponBaseFragment extends BaseFragment {
         mHelpImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UriParse.startByWebView(getActivity(), helpLink);
+                Intent intent = new Intent();
+                intent.putExtra(WebViewContext.URI, helpLink);
+                intent.putExtra(WebViewContext.TITLE, "券立减答疑");
+                intent.putExtra(WebViewContext.LEFT_IMAGE_RES_ID, R.drawable.back_arrow);
+                intent.setClass(getActivity(), WebViewActivity.class);
+                UriParse.startByWebView(getContext(), intent);
             }
         });
     }
@@ -183,6 +196,14 @@ public class CouponBaseFragment extends BaseFragment {
                     }
                 })
                 .start();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (mTopBanner != null) {
+            mTopBanner.releaseBanner();
+        }
     }
 
 }

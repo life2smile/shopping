@@ -1,4 +1,4 @@
-package com.shopping.hanxiao.shopping.business.coupon.data;
+package com.shopping.hanxiao.shopping.business.coupon;
 
 import com.shopping.hanxiao.shopping.business.TopBannerData;
 

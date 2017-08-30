@@ -1,25 +1,32 @@
 package com.shopping.hanxiao.shopping;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.shopping.hanxiao.shopping.business.coupon.CouponBaseFragment;
+import com.shopping.hanxiao.shopping.business.base.CommodityFragment;
 import com.shopping.hanxiao.shopping.business.discount.DiscountFragment;
 import com.shopping.hanxiao.shopping.business.promotion.PromotionFragment;
+import com.shopping.hanxiao.shopping.permission.PermissionsActivity;
+import com.shopping.hanxiao.shopping.permission.PermissionsChecker;
 import com.shopping.hanxiao.shopping.rxretrofit.exception.ApiException;
 import com.shopping.hanxiao.shopping.rxretrofit.http.HttpManager;
 import com.shopping.hanxiao.shopping.rxretrofit.listener.HttpOnNextListener;
 import com.shopping.hanxiao.shopping.tablayout.TabFragmentPagerAdaper;
+import com.shopping.hanxiao.shopping.utils.MacUtil;
 import com.shopping.hanxiao.shopping.utils.UriParse;
 import com.shopping.hanxiao.shopping.version.VersionApi;
 import com.shopping.hanxiao.shopping.version.VersionData;
@@ -36,6 +43,9 @@ public class MainActivity extends RxAppCompatActivity {
 
     private FrameLayout container;
     private TabFragmentPagerAdaper adapter;
+    private PermissionsChecker mPermissionsChecker;
+    private final static String[] PERMISSIONS = new String[]{Manifest.permission.READ_PHONE_STATE};
+    private final static int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,12 +56,12 @@ public class MainActivity extends RxAppCompatActivity {
         initTabLayout();
         initFragment();
         registerListeners();
-        checkNewVersion();
+        checkPermission();
     }
 
     private void initFragment() {
         List<Fragment> list = new ArrayList<>();
-        list.add(CouponBaseFragment.newInstance());
+        list.add(CommodityFragment.newInstance());
         list.add(DiscountFragment.newInstance());
         list.add(PromotionFragment.newInstance());
         container = (FrameLayout) findViewById(R.id.fl_contains);
@@ -113,7 +123,7 @@ public class MainActivity extends RxAppCompatActivity {
                             .setPositiveButton("下载", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    UriParse.startByBrower(MainActivity.this, Uri.parse(versionData.url));
+                                    UriParse.startByBrowser(MainActivity.this, Uri.parse(versionData.url));
                                 }
                             })
                             .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -131,6 +141,31 @@ public class MainActivity extends RxAppCompatActivity {
                 System.out.println(e.getMessage());
             }
         }, MainActivity.this);
-        manager.doHttpDeal(new VersionApi());
+        manager.doHttpDeal(new VersionApi(getDeviceId()));
+    }
+
+    private String getDeviceId() {
+        String deviceId;
+        try {
+            TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            deviceId = tm.getDeviceId();
+        } catch (Exception e) {
+            deviceId = MacUtil.getMac();
+        }
+        return deviceId;
+    }
+
+    private void checkPermission() {
+        mPermissionsChecker = new PermissionsChecker(this);
+        if (mPermissionsChecker.lackPermissions(PERMISSIONS)) {
+            PermissionsActivity.startActivityForResult(this, REQUEST_CODE, PERMISSIONS);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //这里处理权限允许或者被拒的case。一些必须权限如果没有得到这里可以直接finish
+        super.onActivityResult(requestCode, resultCode, data);
+        checkNewVersion();
     }
 }

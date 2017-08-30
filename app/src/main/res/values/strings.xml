@@ -4,7 +4,7 @@
     <string name="main_tab_name_promotion">精品区</string>
     <string name="main_tab_name_coupon">领券区</string>
     <string name="load_retry">加载出错啦，点击重试</string>
-    <string name="load_more">------点击加载更多------</string>
+    <string name="load_more">-------点击加载更多-------</string>
 
 
     <string name="search_hint">热门搜索</string>
@@ -15,4 +15,10 @@
     <string name="search_lately">最近搜索</string>
 
     <string name="search_clear">清除历史</string>
+
+
+    <string name="settings">设置</string>
+    <string name="help">帮助</string>
+    <string name="string_help_text">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。\n\n最后点击两次后退按钮，即可返回。</string>
+    <string name="quit">退出</string>
 </resources>

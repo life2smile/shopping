@@ -13,6 +13,10 @@
         android:layout_height="3dp"
         android:progressDrawable="@drawable/progress_bg" />
 
+    <include
+        android:id="@+id/title_layout"
+        layout="@layout/title_area" />
+
     <WebView
         android:id="@+id/web_content"
         android:layout_width="match_parent"

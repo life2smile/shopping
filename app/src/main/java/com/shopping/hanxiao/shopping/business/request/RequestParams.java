@@ -1,4 +1,4 @@
-package com.shopping.hanxiao.shopping.business.coupon.request;
+package com.shopping.hanxiao.shopping.business.request;
 
 /**
  * Created by wenzhi on 17/6/22.

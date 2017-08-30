@@ -42,7 +42,7 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class PromotionFragment extends BaseFragment {
 
-    private final static int customItems = 4;
+    private final static int sCustomItems = 2;
     private final static int spanNum = 1;
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mRefreshLayout;
@@ -56,12 +56,15 @@ public class PromotionFragment extends BaseFragment {
     private TextView mRefreshTv;
     private Banner mTopBanner;
     private TextView mRecommendTv;
+    private TextView mSelectTv;
     private TextView mHotCommodityTv;
     private TextView mPromotionTv;
     private RecyclerView mHeightRecyclerView;
+    private RecyclerView mNextHeightRecyclerView;
     private HeightHorizontalAdapter mHeightHorizontalAdapter;
-    private ImageView[] mCustomImageViews = new ImageView[customItems];
-    private TextView[] mCustomTextViews = new TextView[customItems];
+    private HeightHorizontalAdapter mNextHeightHorizontalAdapter;
+    private ImageView[] mCustomImageViews = new ImageView[sCustomItems];
+    private TextView[] mCustomTextViews = new TextView[sCustomItems];
 
 
     public static PromotionFragment newInstance() {
@@ -101,6 +104,7 @@ public class PromotionFragment extends BaseFragment {
                 initTopBanner(data.topBanner);
                 updateTwoItems(data.twoItems);
                 updateVerticalHeightItems(data.heightItems);
+                updateNextVerticalHeightItems(data.heightItems);
                 mFooter.setVisibility(data.hasMore ? View.VISIBLE : View.GONE);
                 if (mLoadMore && (data.list == null || data.list.size() == 0)) {
                     ToastUtil.toast(getActivity(), ErrorUtils.NO_DATA);
@@ -168,6 +172,11 @@ public class PromotionFragment extends BaseFragment {
         initVerticalHeightView(itemView);
         headerAndFooterWrapper.addHeaderView(itemView);
 
+        //长高图片区域的下一个长高图片区域
+        View nextItemView = LayoutInflater.from(getActivity()).inflate(R.layout.item_vertical_height_promotion, null);
+        initNextVerticalHeightView(nextItemView);
+        headerAndFooterWrapper.addHeaderView(nextItemView);
+
         //活动商品上面的文案信息
         View promotionView = LayoutInflater.from(getActivity()).inflate(R.layout.header_second, null);
         initPromotionView(promotionView);
@@ -188,9 +197,9 @@ public class PromotionFragment extends BaseFragment {
 
     private void initTowImages(View towImages) {
         mHotCommodityTv = (TextView) towImages.findViewById(R.id.header_text);
-        int[] itemImages = new int[]{R.id.item_img1, R.id.item_img2, R.id.item_img3, R.id.item_img4};
-        int[] itemTexts = new int[]{R.id.item_cover_img_desc1, R.id.item_cover_img_desc2, R.id.item_cover_img_desc3, R.id.item_cover_img_desc4};
-        for (int i = 0; i < customItems; i++) {
+        int[] itemImages = new int[]{R.id.item_img1, R.id.item_img2};
+        int[] itemTexts = new int[]{R.id.item_cover_img_desc1, R.id.item_cover_img_desc2};
+        for (int i = 0; i < sCustomItems; i++) {
             mCustomImageViews[i] = (ImageView) towImages.findViewById(itemImages[i]);
             mCustomTextViews[i] = (TextView) towImages.findViewById(itemTexts[i]);
         }
@@ -206,9 +215,20 @@ public class PromotionFragment extends BaseFragment {
         mHeightRecyclerView.setAdapter(mHeightHorizontalAdapter);
     }
 
+    private void initNextVerticalHeightView(View view) {
+        mSelectTv = (TextView) view.findViewById(R.id.header_text);
+        mSelectTv.setText("|优选清单");
+        mNextHeightRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
+        layoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
+        mNextHeightRecyclerView.setLayoutManager(layoutManager);
+        mNextHeightHorizontalAdapter = new HeightHorizontalAdapter(getActivity());
+        mNextHeightRecyclerView.setAdapter(mNextHeightHorizontalAdapter);
+    }
+
     private void updateTwoItems(List<CustomItemData> customItems) {
         RoundedCornersTransformation transformation = new RoundedCornersTransformation(getActivity(), ScreenInfoUtil.dpToPx(3), 0, RoundedCornersTransformation.CornerType.ALL);
-        for (int i = 0; i < customItems.size(); i++) {
+        for (int i = 0; i < customItems.size() && i < sCustomItems; i++) {
             final CustomItemData data = customItems.get(i);
             mCustomTextViews[i].setText(data.description);
             ImageDownLoadUtil.downLoadImage(getActivity(), data.imgUrl, mCustomImageViews[i], transformation);
@@ -225,6 +245,17 @@ public class PromotionFragment extends BaseFragment {
         if (!mLoadMore) {
             mHeightHorizontalAdapter.addData(customItems);
             mHeightHorizontalAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void updateNextVerticalHeightItems(List<CustomItemData> customItems) {
+        if (!mLoadMore) {
+            int visibility = customItems == null || customItems.size() == 0 ?
+                    View.GONE : View.VISIBLE;
+            mSelectTv.setVisibility(visibility);
+            mNextHeightRecyclerView.setVisibility(visibility);
+            mNextHeightHorizontalAdapter.addData(customItems);
+            mNextHeightHorizontalAdapter.notifyDataSetChanged();
         }
     }
 
@@ -251,6 +282,7 @@ public class PromotionFragment extends BaseFragment {
         mRefreshLayout.setRefreshing(false);//停止上拉刷新
         int visibility = mPromotionAdapter.getItemCount() > 0 ? View.VISIBLE : View.GONE;
         mRecommendTv.setVisibility(visibility);//推荐secondheader
+        mSelectTv.setVisibility(visibility);
         mHotCommodityTv.setVisibility(visibility);
         mPromotionTv.setVisibility(visibility);
     }
@@ -264,6 +296,7 @@ public class PromotionFragment extends BaseFragment {
         this.mHeaderAndFooterWrapper.notifyDataSetChanged();
         this.mFooter.setVisibility(View.GONE);
         this.mHeightHorizontalAdapter.clearData();
+        this.mNextHeightHorizontalAdapter.clearData();
     }
 
     private void initTopBanner(List<TopBannerData> data) {
@@ -283,5 +316,13 @@ public class PromotionFragment extends BaseFragment {
                     }
                 })
                 .start();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(mTopBanner != null){
+            mTopBanner.releaseBanner();
+        }
     }
 }

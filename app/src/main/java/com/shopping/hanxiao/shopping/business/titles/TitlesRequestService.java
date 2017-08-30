@@ -1,4 +1,4 @@
-package com.shopping.hanxiao.shopping.business.coupon.services;
+package com.shopping.hanxiao.shopping.business.titles;
 
 import com.shopping.hanxiao.shopping.utils.NetWorkUtils;
 
@@ -12,8 +12,8 @@ import rx.Observable;
  * Created by wenzhi on 17/6/20.
  */
 
-public interface CommodityRequestService {
+public interface TitlesRequestService {
     @Headers({NetWorkUtils.CONTENT_TYPE, NetWorkUtils.ACCEPT_TYPE})
-    @POST(NetWorkUtils.GET_COMMODITY)
-    Observable<String> getCommodity(@Body RequestBody request);
+    @POST(NetWorkUtils.GET_TITLES)
+    Observable<String> getTitles(@Body RequestBody body);
 }

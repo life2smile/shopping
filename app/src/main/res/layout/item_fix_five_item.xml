@@ -98,7 +98,6 @@
 
                 <View
                     android:layout_width="1px"
-
                     android:layout_height="match_parent"
                     android:background="@color/view_divider_color" />
 
@@ -175,7 +174,6 @@
 
                 <View
                     android:layout_width="1px"
-
                     android:layout_height="match_parent"
                     android:background="@color/view_divider_color" />
 

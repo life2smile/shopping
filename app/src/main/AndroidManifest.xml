@@ -2,12 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shopping.hanxiao.shopping">
 
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".ShoppingApplication"
@@ -39,6 +35,10 @@
 
         <activity
             android:name=".common.search.SearchActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".permission.PermissionsActivity"
             android:screenOrientation="portrait" />
     </application>
 

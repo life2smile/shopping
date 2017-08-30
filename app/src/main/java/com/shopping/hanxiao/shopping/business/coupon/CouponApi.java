@@ -1,8 +1,7 @@
-package com.shopping.hanxiao.shopping.business.coupon.api;
+package com.shopping.hanxiao.shopping.business.coupon;
 
 import com.shopping.hanxiao.shopping.business.RequestApi;
-import com.shopping.hanxiao.shopping.business.coupon.request.RequestParams;
-import com.shopping.hanxiao.shopping.business.coupon.services.CommodityRequestService;
+import com.shopping.hanxiao.shopping.business.request.RequestParams;
 
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;
@@ -12,12 +11,12 @@ import rx.Observable;
  * Created by wenzhi on 17/6/20.
  */
 
-public class CommodityApi extends RequestApi {
+public class CouponApi extends RequestApi {
     private String mType;
     private int mBegin;
     private int mOffset;
 
-    public CommodityApi(String type, int begin, int offset) {
+    public CouponApi(String type, int begin, int offset) {
         this.mType = type;
         this.mBegin = begin;
         this.mOffset = offset;
@@ -34,7 +33,7 @@ public class CommodityApi extends RequestApi {
 
     @Override
     protected Observable concreteObservable(Retrofit retrofit, RequestBody body) {
-        CommodityRequestService requestService = retrofit.create(CommodityRequestService.class);
+        CouponRequestService requestService = retrofit.create(CouponRequestService.class);
         return requestService.getCommodity(body);
     }
 }

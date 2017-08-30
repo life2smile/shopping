@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shopping.hanxiao.shopping.R;
-import com.shopping.hanxiao.shopping.business.coupon.data.CouponItemData;
 import com.shopping.hanxiao.shopping.utils.ImageDownLoadUtil;
 import com.shopping.hanxiao.shopping.utils.NetWorkUtils;
 import com.shopping.hanxiao.shopping.utils.NumberFormatUtil;

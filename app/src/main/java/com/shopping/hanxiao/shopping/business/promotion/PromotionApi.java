@@ -1,6 +1,6 @@
 package com.shopping.hanxiao.shopping.business.promotion;
 
-import com.shopping.hanxiao.shopping.business.coupon.api.CommodityApi;
+import com.shopping.hanxiao.shopping.business.coupon.CouponApi;
 
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;
@@ -10,7 +10,7 @@ import rx.Observable;
  * Created by wenzhi on 17/6/20.
  */
 
-public class PromotionApi extends CommodityApi {
+public class PromotionApi extends CouponApi {
 
     public PromotionApi(String type, int begin, int offset) {
         super(type, begin, offset);

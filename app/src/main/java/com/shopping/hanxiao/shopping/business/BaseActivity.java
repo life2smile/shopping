@@ -1,5 +1,6 @@
 package com.shopping.hanxiao.shopping.business;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
@@ -14,6 +15,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mBody = (FrameLayout) findViewById(R.id.base_layout_body);
+        initDataFromIntent(getIntent());
         fillContent();
         initViews();
         requestDataFromServer();
@@ -27,6 +29,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void requestDataFromServer() {
+    }
+
+    protected void initDataFromIntent(Intent intent) {
+
     }
 
     protected abstract int getContentLayout();

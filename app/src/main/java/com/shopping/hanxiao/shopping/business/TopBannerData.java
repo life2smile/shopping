@@ -10,4 +10,6 @@ public class TopBannerData {
     public String type;
     public String subType;
     public String actionUrl;
+    public String description;
+    public String price;
 }
