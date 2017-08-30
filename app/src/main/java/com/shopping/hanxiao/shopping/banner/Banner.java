@@ -25,10 +25,13 @@ import com.shopping.hanxiao.shopping.banner.listener.OnBannerClickListener;
 import com.shopping.hanxiao.shopping.banner.listener.OnBannerListener;
 import com.shopping.hanxiao.shopping.banner.loader.ImageLoaderInterface;
 import com.shopping.hanxiao.shopping.banner.view.BannerViewPager;
+import com.shopping.hanxiao.shopping.utils.TextViewUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.support.v4.view.ViewPager.OnPageChangeListener;
 import static android.support.v4.view.ViewPager.PageTransformer;
@@ -58,6 +61,7 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
     private int scaleType = 1;
     private List<String> titles;
     private List<String> bottomDesc;
+    private Map<String, String> descMap;
     private List imageUrls;
     private List<View> imageViews;
     private List<ImageView> indicatorImages;
@@ -89,6 +93,7 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
         this.context = context;
         titles = new ArrayList<>();
         bottomDesc = new ArrayList<>();
+        descMap = new HashMap<>();
         imageUrls = new ArrayList<>();
         imageViews = new ArrayList<>();
         indicatorImages = new ArrayList<>();
@@ -221,8 +226,14 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
         return this;
     }
 
+    @Deprecated
     public Banner setBottomDesc(List<String> buttomDesc) {
         this.bottomDesc = buttomDesc;
+        return this;
+    }
+
+    public Banner setDescMap(Map<String, String> map) {
+        this.descMap = map;
         return this;
     }
 
@@ -249,6 +260,17 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
         this.imageUrls.addAll(imageUrls);
         this.titles.addAll(titles);
         this.bottomDesc.addAll(buttomDesc);
+        this.count = this.imageUrls.size();
+        start();
+    }
+
+    public void update(List<?> imageUrls, List<String> titles, Map<String, String> desc) {
+        this.imageUrls.clear();
+        this.titles.clear();
+        this.descMap.clear();
+        this.imageUrls.addAll(imageUrls);
+        this.titles.addAll(titles);
+        this.descMap.putAll(desc);
         this.count = this.imageUrls.size();
         start();
     }
@@ -296,6 +318,7 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
             throw new RuntimeException("[Banner] --> The number of buttomDesc and images is different");
         }
 
+
         if (titleBackground != -1) {
             titleView.setBackgroundColor(titleBackground);
         }
@@ -314,9 +337,13 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
             titleView.setVisibility(View.VISIBLE);
         }
 
+        if (descMap != null && descMap.size() > 0) {//优先采用map
+            TextViewUtils.showTextView(bottomDescTv, descMap.get(imageUrls.get(0)));
+            return;
+        }
+
         if (bottomDesc != null && bottomDesc.size() > 0) {
-            bottomDescTv.setText(bottomDesc.get(0));
-            bottomDescTv.setVisibility(View.VISIBLE);
+            TextViewUtils.showTextView(bottomDescTv, bottomDesc.get(0));
         }
     }
 
@@ -624,26 +651,36 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
                 break;
             case BannerConfig.NUM_INDICATOR_TITLE:
                 numIndicatorInside.setText(position + "/" + count);
-                setText(bannerTitle, position - 1, titles);
-                setText(bottomDescTv, position - 1, bottomDesc);
+                updateTextInfo(position - 1);
                 break;
             case BannerConfig.CIRCLE_INDICATOR_TITLE:
-                setText(bannerTitle, position - 1, titles);
-                setText(bottomDescTv, position - 1, bottomDesc);
+                updateTextInfo(position - 1);
                 break;
             case BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE:
-                setText(bannerTitle, position - 1, titles);
-                setText(bottomDescTv, position - 1, bottomDesc);
+                updateTextInfo(position - 1);
                 break;
         }
 
+    }
+
+    public void updateTextInfo(int index) {
+        setText(bannerTitle, index, titles);
+        if (descMap != null && descMap.size() > 0) {
+            setText(bottomDescTv, index, descMap);
+            return;
+        }
+        setText(bottomDescTv, index, bottomDesc);
     }
 
     private void setText(TextView view, int index, List<String> values) {
         if (index < 0 || index >= values.size()) {
             return;
         }
-        view.setText(values.get(index));
+        TextViewUtils.showTextView(view, values.get(index));
+    }
+
+    private void setText(TextView view, int index, Map<String, String> values) {
+        TextViewUtils.showTextView(view, values.get(imageUrls.get(index)));
     }
 
     @Deprecated

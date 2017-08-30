@@ -39,7 +39,9 @@ import com.shopping.hanxiao.shopping.wrapper.HeaderAndFooterWrapper;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wenzhi on 17/6/17.
@@ -244,7 +246,7 @@ public class DiscountFragment extends BaseFragment {
 
     private void initTopBanner(List<TopBannerData> datas) {
         ArrayList<String> imagUrls = new ArrayList<>();
-        ArrayList<String> bottomDescs = new ArrayList<>();
+        Map<String, String> descMap = new HashMap<>();
         final ArrayList<String> actionUrls = new ArrayList<>();
         for (int i = 0; i < datas.size(); i++) {//取前四个数据作为topBanner
             TopBannerData data = datas.get(i);
@@ -256,12 +258,11 @@ public class DiscountFragment extends BaseFragment {
                         : (data.price == 0 ? null
                         : StringUtils.truncateStringWithEllipsis(data.description, Constants.ELLIPSIS_NUMBER)
                         + NumberFormatUtil.formatToRMB(data.price));
-                bottomDescs.add(bottomDesc);
+                descMap.put(data.imgUrl, bottomDesc);
             }
         }
-        //简单使用
         mTopBanner.setImages(imagUrls)
-                .setBottomDesc(bottomDescs)
+                .setDescMap(descMap)
                 .setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE)
                 .setImageLoader(new GlideImageLoader(90, true))
                 .setOnBannerListener(new OnBannerListener() {

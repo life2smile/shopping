@@ -30,6 +30,7 @@ public class TextViewUtils {
     }
 
     public static void showTextView(TextView view, String text) {
+        view.setVisibility(View.GONE);
         if (!TextUtils.isEmpty(text)) {
             view.setText(text);
             view.setVisibility(View.VISIBLE);

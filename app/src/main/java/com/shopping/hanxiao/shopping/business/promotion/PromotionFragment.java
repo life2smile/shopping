@@ -36,7 +36,9 @@ import com.shopping.hanxiao.shopping.wrapper.HeaderAndFooterWrapper;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
@@ -285,8 +287,8 @@ public class PromotionFragment extends BaseFragment {
         mRefreshing = false;
         mRefreshLayout.setRefreshing(false);//停止上拉刷新
         int visibility = mPromotionAdapter.getItemCount() > 0 ? View.VISIBLE : View.GONE;
-        mRecommendTv.setVisibility(visibility);//推荐secondheader
-        mSelectTv.setVisibility(visibility);
+        mRecommendTv.setVisibility(mHeightHorizontalAdapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);//推荐secondheader
+        mSelectTv.setVisibility(mNextHeightHorizontalAdapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
         mHotCommodityTv.setVisibility(visibility);
         mPromotionTv.setVisibility(visibility);
     }
@@ -305,7 +307,7 @@ public class PromotionFragment extends BaseFragment {
 
     private void initTopBanner(List<TopBannerData> datas) {
         ArrayList<String> imagUrls = new ArrayList<>();
-        ArrayList<String> bottomDescs = new ArrayList<>();
+        Map<String, String> descMap = new HashMap<>();
         final ArrayList<String> actionUrls = new ArrayList<>();
         for (int i = 0; i < datas.size(); i++) {//取前四个数据作为topBanner
             TopBannerData data = datas.get(i);
@@ -317,12 +319,12 @@ public class PromotionFragment extends BaseFragment {
                         : (data.price == 0 ? null
                         : StringUtils.truncateStringWithEllipsis(data.description, Constants.ELLIPSIS_NUMBER)
                         + NumberFormatUtil.formatToRMB(data.price));
-                bottomDescs.add(bottomDesc);
+                descMap.put(data.imgUrl, bottomDesc);
             }
         }
 
         mTopBanner.setImages(imagUrls)
-                .setBottomDesc(bottomDescs)
+                .setDescMap(descMap)
                 .setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE)
                 .setImageLoader(new GlideImageLoader(90, true))
                 .setOnBannerListener(new OnBannerListener() {
