@@ -57,12 +57,14 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
     private int lastPosition = 1;
     private int scaleType = 1;
     private List<String> titles;
+    private List<String> bottomDesc;
     private List imageUrls;
     private List<View> imageViews;
     private List<ImageView> indicatorImages;
     private Context context;
     private BannerViewPager viewPager;
     private TextView bannerTitle, numIndicatorInside, numIndicator;
+    private TextView bottomDescTv;
     private LinearLayout indicator, indicatorInside, titleView;
     private ImageLoaderInterface imageLoader;
     private BannerPagerAdapter adapter;
@@ -86,6 +88,7 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
         super(context, attrs, defStyle);
         this.context = context;
         titles = new ArrayList<>();
+        bottomDesc = new ArrayList<>();
         imageUrls = new ArrayList<>();
         imageViews = new ArrayList<>();
         indicatorImages = new ArrayList<>();
@@ -104,6 +107,7 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
         indicatorInside = (LinearLayout) view.findViewById(R.id.indicatorInside);
         bannerTitle = (TextView) view.findViewById(R.id.bannerTitle);
         numIndicator = (TextView) view.findViewById(R.id.numIndicator);
+        bottomDescTv = (TextView) view.findViewById(R.id.bottomDesc);
         numIndicatorInside = (TextView) view.findViewById(R.id.numIndicatorInside);
         initViewPagerScroll();
     }
@@ -217,6 +221,11 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
         return this;
     }
 
+    public Banner setBottomDesc(List<String> buttomDesc) {
+        this.bottomDesc = buttomDesc;
+        return this;
+    }
+
     public Banner setBannerStyle(int bannerStyle) {
         this.bannerStyle = bannerStyle;
         return this;
@@ -231,6 +240,17 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
         this.imageUrls = imageUrls;
         this.count = imageUrls.size();
         return this;
+    }
+
+    public void update(List<?> imageUrls, List<String> titles, List<String> buttomDesc) {
+        this.imageUrls.clear();
+        this.titles.clear();
+        this.bottomDesc.clear();
+        this.imageUrls.addAll(imageUrls);
+        this.titles.addAll(titles);
+        this.bottomDesc.addAll(buttomDesc);
+        this.count = this.imageUrls.size();
+        start();
     }
 
     public void update(List<?> imageUrls, List<String> titles) {
@@ -268,9 +288,14 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
     }
 
     private void setTitleStyleUI() {
-        if (titles.size() != imageUrls.size()) {
+        if (titles.size() != 0 && titles.size() != imageUrls.size()) {
             throw new RuntimeException("[Banner] --> The number of titles and images is different");
         }
+
+        if (bottomDesc.size() != 0 && bottomDesc.size() != imageUrls.size()) {
+            throw new RuntimeException("[Banner] --> The number of buttomDesc and images is different");
+        }
+
         if (titleBackground != -1) {
             titleView.setBackgroundColor(titleBackground);
         }
@@ -287,6 +312,11 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
             bannerTitle.setText(titles.get(0));
             bannerTitle.setVisibility(View.VISIBLE);
             titleView.setVisibility(View.VISIBLE);
+        }
+
+        if (bottomDesc != null && bottomDesc.size() > 0) {
+            bottomDescTv.setText(bottomDesc.get(0));
+            bottomDescTv.setVisibility(View.VISIBLE);
         }
     }
 
@@ -594,16 +624,26 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
                 break;
             case BannerConfig.NUM_INDICATOR_TITLE:
                 numIndicatorInside.setText(position + "/" + count);
-                bannerTitle.setText(titles.get(position - 1));
+                setText(bannerTitle, position - 1, titles);
+                setText(bottomDescTv, position - 1, bottomDesc);
                 break;
             case BannerConfig.CIRCLE_INDICATOR_TITLE:
-                bannerTitle.setText(titles.get(position - 1));
+                setText(bannerTitle, position - 1, titles);
+                setText(bottomDescTv, position - 1, bottomDesc);
                 break;
             case BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE:
-                bannerTitle.setText(titles.get(position - 1));
+                setText(bannerTitle, position - 1, titles);
+                setText(bottomDescTv, position - 1, bottomDesc);
                 break;
         }
 
+    }
+
+    private void setText(TextView view, int index, List<String> values) {
+        if (index < 0 || index >= values.size()) {
+            return;
+        }
+        view.setText(values.get(index));
     }
 
     @Deprecated

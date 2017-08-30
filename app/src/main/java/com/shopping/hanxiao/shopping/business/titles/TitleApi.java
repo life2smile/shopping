@@ -1,7 +1,7 @@
 package com.shopping.hanxiao.shopping.business.titles;
 
 import com.shopping.hanxiao.shopping.business.RequestApi;
-import com.shopping.hanxiao.shopping.business.request.RequestParams;
+import com.shopping.hanxiao.shopping.business.RequestParams;
 
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;

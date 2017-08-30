@@ -5,7 +5,9 @@ package com.shopping.hanxiao.shopping.utils;
  */
 
 public class Constants {
-    public static final int fistBannerHeight = ScreenInfoUtil.dpToPx(160);
+    public static final int FIRST_BANNER_HEIGHT = ScreenInfoUtil.dpToPx(160);
 
-    public static final int bannerHeight = ScreenInfoUtil.dpToPx(155);
+    public static final int BANNER_HEIGHT = ScreenInfoUtil.dpToPx(155);
+
+    public static final int ELLIPSIS_NUMBER = 3;
 }

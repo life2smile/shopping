@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.shopping.hanxiao.shopping.R;
 import com.shopping.hanxiao.shopping.banner.Banner;
+import com.shopping.hanxiao.shopping.banner.BannerConfig;
 import com.shopping.hanxiao.shopping.banner.listener.OnBannerListener;
 import com.shopping.hanxiao.shopping.business.BaseFragment;
 import com.shopping.hanxiao.shopping.business.TopBannerData;
@@ -28,7 +30,9 @@ import com.shopping.hanxiao.shopping.rxretrofit.listener.HttpOnNextListener;
 import com.shopping.hanxiao.shopping.utils.Constants;
 import com.shopping.hanxiao.shopping.utils.ErrorUtils;
 import com.shopping.hanxiao.shopping.utils.ImageDownLoadUtil;
+import com.shopping.hanxiao.shopping.utils.NumberFormatUtil;
 import com.shopping.hanxiao.shopping.utils.ScreenInfoUtil;
+import com.shopping.hanxiao.shopping.utils.StringUtils;
 import com.shopping.hanxiao.shopping.utils.ToastUtil;
 import com.shopping.hanxiao.shopping.utils.UriParse;
 import com.shopping.hanxiao.shopping.wrapper.HeaderAndFooterWrapper;
@@ -114,6 +118,7 @@ public class DiscountFragment extends BaseFragment {
 
             @Override
             public void onError(ApiException e) {
+                System.out.println(e.getDisplayMessage());
                 ToastUtil.toast(getActivity(), ErrorUtils.ERROR_MSG);
                 recoveryViewStatus();
                 if (!mLoadMore) {
@@ -191,7 +196,7 @@ public class DiscountFragment extends BaseFragment {
         //顶部轮播图
         View header = LayoutInflater.from(getActivity()).inflate(R.layout.header, null);
         mTopBanner = (Banner) header.findViewById(R.id.banner);
-        mTopBanner.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Constants.bannerHeight));
+        mTopBanner.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Constants.BANNER_HEIGHT));
         headerAndFooterWrapper.addHeaderView(header);
 
         //轮播图下面的5图片区域
@@ -237,15 +242,27 @@ public class DiscountFragment extends BaseFragment {
         initLoadMore();
     }
 
-    private void initTopBanner(List<TopBannerData> data) {
+    private void initTopBanner(List<TopBannerData> datas) {
         ArrayList<String> imagUrls = new ArrayList<>();
+        ArrayList<String> bottomDescs = new ArrayList<>();
         final ArrayList<String> actionUrls = new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {//取前四个数据作为topBanner
-            imagUrls.add(data.get(i).imgUrl);
-            actionUrls.add(data.get(i).actionUrl);
+        for (int i = 0; i < datas.size(); i++) {//取前四个数据作为topBanner
+            TopBannerData data = datas.get(i);
+            imagUrls.add(data.imgUrl);
+            actionUrls.add(data.actionUrl);
+            if (!TextUtils.isEmpty(data.description) || data.price != 0) {
+                String bottomDesc = TextUtils.isEmpty(data.description) ?
+                        NumberFormatUtil.formatToRMB(data.price)
+                        : (data.price == 0 ? null
+                        : StringUtils.truncateStringWithEllipsis(data.description, Constants.ELLIPSIS_NUMBER)
+                        + NumberFormatUtil.formatToRMB(data.price));
+                bottomDescs.add(bottomDesc);
+            }
         }
         //简单使用
         mTopBanner.setImages(imagUrls)
+                .setBottomDesc(bottomDescs)
+                .setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE)
                 .setImageLoader(new GlideImageLoader(90, true))
                 .setOnBannerListener(new OnBannerListener() {
                     @Override
@@ -254,7 +271,9 @@ public class DiscountFragment extends BaseFragment {
                     }
                 })
                 .start();
+
     }
+
 
     private void recoveryViewStatus() {
         mLoadMore = false;

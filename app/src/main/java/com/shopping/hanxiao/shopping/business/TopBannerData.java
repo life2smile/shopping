@@ -11,5 +11,5 @@ public class TopBannerData {
     public String subType;
     public String actionUrl;
     public String description;
-    public String price;
+    public double price;
 }

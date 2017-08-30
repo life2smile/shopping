@@ -26,6 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:delay_time="5000"
+                app:layout_id="@layout/custom_banner"
                 app:image_scale_type="fit_xy" />
 
             <View
