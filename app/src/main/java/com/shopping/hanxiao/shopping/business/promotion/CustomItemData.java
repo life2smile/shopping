@@ -8,4 +8,6 @@ public class CustomItemData {
     public String description;
     public String imgUrl;
     public String actionUrl;
+    public double originPrice;
+    public double promotionPrice;
 }

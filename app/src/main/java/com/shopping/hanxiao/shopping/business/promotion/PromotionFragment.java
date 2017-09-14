@@ -30,6 +30,7 @@ import com.shopping.hanxiao.shopping.utils.ImageDownLoadUtil;
 import com.shopping.hanxiao.shopping.utils.NumberFormatUtil;
 import com.shopping.hanxiao.shopping.utils.ScreenInfoUtil;
 import com.shopping.hanxiao.shopping.utils.StringUtils;
+import com.shopping.hanxiao.shopping.utils.TextViewUtils;
 import com.shopping.hanxiao.shopping.utils.ToastUtil;
 import com.shopping.hanxiao.shopping.utils.UriParse;
 import com.shopping.hanxiao.shopping.wrapper.HeaderAndFooterWrapper;
@@ -71,6 +72,7 @@ public class PromotionFragment extends BaseFragment {
     private HeightHorizontalAdapter mNextHeightHorizontalAdapter;
     private ImageView[] mCustomImageViews = new ImageView[sCustomItems];
     private TextView[] mCustomTextViews = new TextView[sCustomItems];
+    private TextView[] mPromotionPriceTextViews = new TextView[sCustomItems];
 
 
     public static PromotionFragment newInstance() {
@@ -205,9 +207,11 @@ public class PromotionFragment extends BaseFragment {
         mHotCommodityTv = (TextView) towImages.findViewById(R.id.header_text);
         int[] itemImages = new int[]{R.id.item_img1, R.id.item_img2};
         int[] itemTexts = new int[]{R.id.item_cover_img_desc1, R.id.item_cover_img_desc2};
+        int[] originPrice = new int[]{R.id.item_price_tv1, R.id.item_price_tv2};
         for (int i = 0; i < sCustomItems; i++) {
             mCustomImageViews[i] = (ImageView) towImages.findViewById(itemImages[i]);
             mCustomTextViews[i] = (TextView) towImages.findViewById(itemTexts[i]);
+            mPromotionPriceTextViews[i] = (TextView) towImages.findViewById(originPrice[i]);
         }
     }
 
@@ -237,6 +241,9 @@ public class PromotionFragment extends BaseFragment {
         for (int i = 0; i < customItems.size() && i < sCustomItems; i++) {
             final CustomItemData data = customItems.get(i);
             mCustomTextViews[i].setText(data.description);
+            if (data.promotionPrice != 0) {
+                TextViewUtils.showTextView(mPromotionPriceTextViews[i], NumberFormatUtil.formatToRMB(data.promotionPrice));
+            }
             ImageDownLoadUtil.downLoadImage(getActivity(), data.imgUrl, mCustomImageViews[i], transformation);
             mCustomImageViews[i].setOnClickListener(new View.OnClickListener() {
                 @Override

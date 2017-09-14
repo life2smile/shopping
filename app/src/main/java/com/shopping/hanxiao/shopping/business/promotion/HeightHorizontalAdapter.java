@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import com.shopping.hanxiao.shopping.R;
 import com.shopping.hanxiao.shopping.utils.ImageDownLoadUtil;
+import com.shopping.hanxiao.shopping.utils.NumberFormatUtil;
 import com.shopping.hanxiao.shopping.utils.ScreenInfoUtil;
+import com.shopping.hanxiao.shopping.utils.TextViewUtils;
 import com.shopping.hanxiao.shopping.utils.UriParse;
 
 import java.util.ArrayList;
@@ -67,7 +69,12 @@ public class HeightHorizontalAdapter extends RecyclerView.Adapter<HeightHorizont
         final CustomViewHolder customViewHolder = holder;
         final CustomItemData data = mData.get(position);
         customViewHolder.mView.setTag(position);
-        customViewHolder.mDescTv.setText(data.description);
+        TextViewUtils.showTextView(customViewHolder.mDescTv, data.description);
+        if (data.promotionPrice != 0) {
+            TextViewUtils.showTextView(customViewHolder.mPromotionPriceTv, NumberFormatUtil.formatToRMB(data.promotionPrice));
+        } else {
+            TextViewUtils.hiddenView(customViewHolder.mPromotionPriceTv);
+        }
         RoundedCornersTransformation transformation = new RoundedCornersTransformation(mContext, ScreenInfoUtil.dpToPx(2), 0, RoundedCornersTransformation.CornerType.ALL);
         ImageDownLoadUtil.downLoadImage(mContext, data.imgUrl, customViewHolder.mCommodityImg, transformation);
     }
@@ -86,12 +93,14 @@ public class HeightHorizontalAdapter extends RecyclerView.Adapter<HeightHorizont
         private View mView;
         private TextView mDescTv;
         private ImageView mCommodityImg;
+        private TextView mPromotionPriceTv;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
             mDescTv = (TextView) itemView.findViewById(R.id.item_cover_img_desc);
             mCommodityImg = (ImageView) itemView.findViewById(R.id.item_img);
+            mPromotionPriceTv = (TextView) itemView.findViewById(R.id.item_promotion_price_tv);
         }
     }
 }

@@ -73,6 +73,15 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CustomView
         customViewHolder.mCouponPriceTv.setText(NumberFormatUtil.formatToRMB(data.couponPrice));
         customViewHolder.mOriginPriceTv.setText(NumberFormatUtil.formatToRMB(data.originPrice));
         customViewHolder.mOriginPriceTv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        customViewHolder.mNoteTv.setText(data.hasTicket ? "优惠券:" : "为您节省:");
+//        if (data.couponValue != 0) {
+//            TextViewUtils.showView(customViewHolder.mNoteTv);
+//            TextViewUtils.showView(customViewHolder.mCouponValueTv);
+//
+//        } else {
+//            TextViewUtils.hiddenView(customViewHolder.mNoteTv);
+//            TextViewUtils.hiddenView(customViewHolder.mCouponValueTv);
+//        }
         ImageDownLoadUtil.downLoadImage(mContext, NetWorkUtils.PLATFORM_ICON_PREFIX + mData.get(position).platformImg, customViewHolder.mPlatformImg);
         RoundedCornersTransformation transformation = new RoundedCornersTransformation(mContext, ScreenInfoUtil.dpToPx(4), 0, RoundedCornersTransformation.CornerType.TOP);
         ImageDownLoadUtil.downLoadImage(mContext, mData.get(position).imageUrl, customViewHolder.mCommodityImg, transformation);
@@ -95,6 +104,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CustomView
         private ImageView mPlatformImg;
         private ImageView mCommodityImg;
         private View mItemView;
+        private TextView mNoteTv;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
@@ -103,6 +113,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CustomView
             mCouponPriceTv = (TextView) itemView.findViewById(R.id.item_coupon_price_tv);
             mOriginPriceTv = (TextView) itemView.findViewById(R.id.item_origin_price_tv);
             mCouponValueTv = (TextView) itemView.findViewById(R.id.item_coupon_value_tv);
+            mNoteTv = (TextView) itemView.findViewById(R.id.item_coupon_note);
 
             mCommodityImg = (ImageView) itemView.findViewById(R.id.item_commodity_img);
             mPlatformImg = (ImageView) itemView.findViewById(R.id.item_platform_img);

@@ -65,6 +65,25 @@
             android:layout_gravity="bottom|center_horizontal"
             android:adjustViewBounds="true"
             android:src="@drawable/img_arrow" />
+
+        <TextView
+            android:id="@+id/item_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:alpha="0.5"
+            android:background="@color/base_main_text_color1"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/base_padding_one_dp"
+            android:paddingLeft="@dimen/base_padding_extra_little"
+            android:paddingRight="@dimen/base_padding_extra_little"
+            android:paddingTop="@dimen/base_padding_one_dp"
+            android:singleLine="true"
+            android:text="精品"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/base_main_text_size2"
+            android:visibility="visible"
+            tools:visibility="visible" />
     </FrameLayout>
 
 

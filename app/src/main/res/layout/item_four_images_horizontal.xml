@@ -12,10 +12,12 @@
         android:id="@+id/item_layout1"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:orientation="vertical"
         android:paddingRight="@dimen/base_padding_extra_small">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
         <ImageView
             android:id="@+id/item_img"
             android:layout_width="match_parent"
@@ -24,6 +26,25 @@
             android:adjustViewBounds="true"
             android:scaleType="fitXY" />
 
+            <TextView
+                android:id="@+id/item_promotion_price_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:alpha="0.5"
+                android:background="@color/base_main_text_color1"
+                android:maxEms="8"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/base_padding_one_dp"
+                android:paddingRight="@dimen/base_padding_two_dp"
+                android:singleLine="true"
+                android:text="精品"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_main_text_size3"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </FrameLayout>
         <TextView
             android:id="@+id/item_cover_img_desc"
             android:layout_width="wrap_content"

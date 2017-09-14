@@ -2,7 +2,7 @@
     <string name="app_name">券立减</string>
     <string name="main_tab_name_discount">发现区</string>
     <string name="main_tab_name_promotion">精品区</string>
-    <string name="main_tab_name_coupon">领券区</string>
+    <string name="main_tab_name_coupon">特惠区</string>
     <string name="load_retry">加载出错啦，点击重试</string>
     <string name="load_more">-------点击加载更多-------</string>
 

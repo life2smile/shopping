@@ -65,6 +65,20 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/base_main_text_size2" />
 
+            <TextView
+                android:id="@+id/item_price_tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:paddingBottom="@dimen/base_padding_one_dp"
+                android:paddingRight="@dimen/base_padding_extra_little"
+                android:singleLine="true"
+                android:text="活动精品"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_main_text_size3"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
         </FrameLayout>
 
         <FrameLayout
@@ -104,6 +118,20 @@
                 android:text="活动精品"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/base_main_text_size2" />
+
+            <TextView
+                android:id="@+id/item_price_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:paddingBottom="@dimen/base_padding_one_dp"
+                android:paddingRight="@dimen/base_padding_extra_little"
+                android:singleLine="true"
+                android:text="活动精品"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_main_text_size3"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
         </FrameLayout>
     </LinearLayout>

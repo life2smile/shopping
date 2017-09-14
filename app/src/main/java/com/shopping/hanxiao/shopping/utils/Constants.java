@@ -9,5 +9,5 @@ public class Constants {
 
     public static final int BANNER_HEIGHT = ScreenInfoUtil.dpToPx(155);
 
-    public static final int ELLIPSIS_NUMBER = 3;
+    public static final int ELLIPSIS_NUMBER = 4;
 }

@@ -103,13 +103,13 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/base_padding_one_dp"
         android:alpha="0.7"
+        android:textSize="13sp"
         android:background="@color/colorRed"
-        android:maxEms="8"
         android:orientation="horizontal"
         android:padding="1dp"
         android:singleLine="true"
         android:text="精品"
         android:textColor="@color/colorWhite"
         android:visibility="gone"
-        tools:visiblity="visibility" />
+        tools:visibility="visible" />
 </RelativeLayout>

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class PromotionItemData {
     public long id;
+    public double originPrice;
     public String description;
     public String subDescription;
     public String imgUrl;

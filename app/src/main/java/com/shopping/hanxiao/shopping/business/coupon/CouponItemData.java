@@ -15,4 +15,5 @@ public class CouponItemData {
     public String actionUrl;
     public String platformImg;
     public String platformDesc;
+    public boolean hasTicket;
 }
