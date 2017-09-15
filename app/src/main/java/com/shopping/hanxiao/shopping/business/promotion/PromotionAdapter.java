@@ -68,10 +68,10 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.Cust
         final CustomViewHolder customViewHolder = holder;
         final PromotionItemData data = mData.get(position);
         customViewHolder.mView.setTag(position);
-        if (data.originPrice != 0) {
-            TextViewUtils.showTextView(customViewHolder.mOriginPriceTv, NumberFormatUtil.formatToRMB(data.originPrice));
+        if (data.promotionPrice != 0) {
+            TextViewUtils.showTextView(customViewHolder.mPromotionTv, NumberFormatUtil.formatToRMB(data.promotionPrice));
         } else {
-            TextViewUtils.hiddenView(customViewHolder.mOriginPriceTv);
+            TextViewUtils.hiddenView(customViewHolder.mPromotionTv);
         }
         TextViewUtils.showTextView(customViewHolder.mDescTv, data.description);
         TextViewUtils.showTextView(customViewHolder.mSubDescTv, data.subDescription);
@@ -102,7 +102,7 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.Cust
         private ImageView mCommodityImg;
         private RecyclerView mRecyclerView;
         private TextView mSubDescTv;
-        private TextView mOriginPriceTv;
+        private TextView mPromotionTv;
 
 
         public CustomViewHolder(View itemView) {
@@ -113,7 +113,7 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.Cust
 
             mCommodityImg = (ImageView) itemView.findViewById(R.id.item_promotion_img);
             mRecyclerView = (RecyclerView) itemView.findViewById(R.id.recycler_view);
-            mOriginPriceTv = (TextView) itemView.findViewById(R.id.item_price_tv);
+            mPromotionTv = (TextView) itemView.findViewById(R.id.item_price_tv);
         }
     }
 }

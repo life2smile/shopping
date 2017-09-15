@@ -9,24 +9,44 @@
     card_view:cardUseCompatPadding="true"
     tools:context="com.shopping.hanxiao.shopping.business.BaseActivity">
 
-    <ImageView
-        android:id="@+id/item_commodity_img"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY" />
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/item_commodity_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/item_promotion_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:background="@color/colorRed"
+            android:maxEms="8"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/base_padding_one_dp"
+            android:paddingRight="@dimen/base_padding_two_dp"
+            android:singleLine="true"
+            android:text="小米手机"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/base_main_text_size4"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/item_price_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/item_commodity_img"
+        android:layout_below="@id/frameLayout"
         android:layout_centerHorizontal="true"
         android:maxLines="1"
         android:paddingTop="@dimen/base_padding_extra_small"
         tools:text="￥20" />
-
-
 </RelativeLayout>
