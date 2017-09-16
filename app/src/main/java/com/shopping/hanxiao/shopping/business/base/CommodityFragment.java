@@ -103,17 +103,26 @@ public class CommodityFragment extends BaseFragment {
                 mHelpImg.setVisibility(verticalOffset > bannerHeight ? View.VISIBLE : View.GONE);
                 if (verticalOffset == 0) {
                     mToobarBackground.setAlpha(0);
+                    mToolbar.setAlpha(0);
+                    mToolbar.setVisibility(View.GONE);
+                    mToobarBackground.setVisibility(View.GONE);
                     return;
                 }
 
                 if (verticalOffset > bannerHeight) {
                     mToobarBackground.setAlpha(1);
+                    mToolbar.setAlpha(1);
+                    mToolbar.setVisibility(View.VISIBLE);
+                    mToobarBackground.setVisibility(View.VISIBLE);
                     return;
                 }
 
                 if (verticalOffset < bannerHeight) {
                     float alpha = verticalOffset / bannerHeight;
                     mToobarBackground.setAlpha(alpha);
+                    mToolbar.setAlpha(alpha);
+                    mToolbar.setVisibility(View.GONE);
+                    mToobarBackground.setVisibility(View.GONE);
                 }
             }
         });
@@ -124,6 +133,7 @@ public class CommodityFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), SearchActivity.class));
             }
         });
+
         mToobarBackground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

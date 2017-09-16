@@ -92,6 +92,7 @@ public class WebViewActivity extends BaseActivity {
         mWebView.getSettings().setBlockNetworkImage(false);
         mWebView.getSettings().setBlockNetworkLoads(false);
         mWebView.getSettings().setLoadsImagesAutomatically(true);
+        mWebView.getSettings().setDomStorageEnabled(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mWebView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }

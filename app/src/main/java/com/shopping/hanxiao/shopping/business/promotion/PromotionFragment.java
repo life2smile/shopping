@@ -198,7 +198,7 @@ public class PromotionFragment extends BaseFragment {
         mPromotionTv.setVisibility(View.VISIBLE);
         mPromotionTv.setLayoutParams(params);
         mPromotionTv.setPadding(defaultPadding, ScreenInfoUtil.dpToPx(10), 0, ScreenInfoUtil.dpToPx(8));
-        mPromotionTv.setText("|良品精选");
+        mPromotionTv.setText("|品牌精选");
         mPromotionTv.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         mPromotionTv.setTextColor(getResources().getColor(R.color.base_main_text_color3));
     }
