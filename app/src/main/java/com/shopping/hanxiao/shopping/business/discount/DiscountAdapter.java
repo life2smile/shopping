@@ -1,8 +1,10 @@
 package com.shopping.hanxiao.shopping.business.discount;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +66,11 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.Custom
         TextViewUtils.showTextView(customViewHolder.mContentTv, data.description);
         TextViewUtils.showTextView(customViewHolder.mTitleTv, data.title);
         TextViewUtils.showTextView(customViewHolder.mPlatformDesc, data.platformDesc);
+        if (!TextUtils.isEmpty(data.platformDesc) && !TextUtils.isEmpty(data.platformBg)) {
+            customViewHolder.mPlatformDesc.setBackgroundColor(Color.parseColor(data.platformBg));
+        } else if (!TextUtils.isEmpty(data.platformDesc)) {
+            customViewHolder.mPlatformDesc.setBackgroundColor(Color.parseColor("#FF4081"));
+        }
         TextViewUtils.setTextViewVisibility(customViewHolder.mCouponPriceTv, NumberFormatUtil.formatToRMB(data.couponPrice), data.couponPrice > 0 ? View.VISIBLE : View.GONE);
         TextViewUtils.setTextViewVisibility(customViewHolder.mOriginPriceTv, NumberFormatUtil.formatToRMB(data.originPrice), data.originPrice > 0 ? View.VISIBLE : View.GONE);
         TextViewUtils.setTextViewVisibility(customViewHolder.mCouponValueTv, NumberFormatUtil.formatToRMB(data.discount), data.discount > 0 ? View.VISIBLE : View.GONE);

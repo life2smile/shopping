@@ -16,4 +16,5 @@ public class DiscountItemData {
     public String platformImg;
     public String platformDesc;
     public String content;
+    public String platformBg;
 }
