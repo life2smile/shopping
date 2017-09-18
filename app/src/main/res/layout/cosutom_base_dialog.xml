@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="300dp"
+    android:orientation="vertical"
+    android:paddingTop="20dp">
+
+    <TextView
+        android:id="@+id/pf_dialog_title"
+        style="@style/CustomDialogText.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:visibility="gone"
+        tools:text="标题" />
+
+    <TextView
+        android:id="@+id/pf_dialog_msg"
+        style="@style/CustomDialogText.Msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="33dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:visibility="gone"
+        tools:text="信息" />
+
+    <FrameLayout
+        android:id="@+id/pf_dialog_content_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        tools:layout_height="100dp">
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="20dp"
+        android:background="#e5e5e5" />
+
+    <LinearLayout
+        android:id="@+id/pf_dialog_btn_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/custom_linearlayout_vertical_divider"
+        android:showDividers="middle">
+
+        <Button
+            android:id="@+id/pf_dialog_cancelBtn"
+            style="@style/CustomDialogText.Btn.LEFT_CANCEL" />
+
+        <Button
+            android:id="@+id/pf_dialog_okBtn"
+            style="@style/CustomDialogText.Btn.RIGHT_OK" />
+
+    </LinearLayout>
+
+</LinearLayout>
