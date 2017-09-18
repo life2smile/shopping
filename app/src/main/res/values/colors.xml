@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#AAC4573C</color>
+    <color name="colorAccentNoAlpha">#FFC4573C</color>
     <color name="colorRed">#FF4081</color>
     <color name="base_main_text_color1">#333333</color>
     <color name="base_main_text_color2">#666666</color>
@@ -13,6 +14,10 @@
     <color name="colorWhite">#ffffff</color>
     <color name="body_area_bg_color">#f6f6f6</color>
     <color name="transparent_bg_color">#19ffffff</color>
+
+
+    <color name="custom_dialog_btn_disabled_color">#cccccc</color>
+    <color name="custom_dialog_btn_pressed_color">#f1f1f1</color>
 
 
     <!--下面的资源多数不会用到-->

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.shopping.hanxiao.shopping.business.BaseActivity">
 
     <include
@@ -27,6 +28,23 @@
                 android:scrollbars="none" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="@dimen/base_padding_extra_small"
+            android:layout_marginRight="@dimen/base_padding_extra_small"
+            android:alpha="0.7"
+            android:src="@drawable/explore_search_icon"
+            android:visibility="gone"
+            app:backgroundTint="@color/colorRed"
+            app:borderWidth="0dp"
+            app:elevation="20dp"
+            app:fabSize="mini"
+            app:rippleColor="@color/colorAccentNoAlpha"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/refresh_tv"

@@ -159,6 +159,8 @@ public class MainActivity extends RxAppCompatActivity {
         mPermissionsChecker = new PermissionsChecker(this);
         if (mPermissionsChecker.lackPermissions(PERMISSIONS)) {
             PermissionsActivity.startActivityForResult(this, REQUEST_CODE, PERMISSIONS);
+        } else {
+            checkNewVersion();
         }
     }
 

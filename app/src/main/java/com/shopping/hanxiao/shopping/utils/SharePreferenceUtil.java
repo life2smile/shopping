@@ -11,6 +11,7 @@ import java.util.List;
  */
 
 public class SharePreferenceUtil {
+    private static String publicPreferenceName = "shopping_public_preference_name";
 
     public static boolean saveDatas(Context context, String preferenceName, String key, List<String> values) {
         SharedPreferences sp = context.getSharedPreferences(preferenceName, context.MODE_PRIVATE);
@@ -32,5 +33,25 @@ public class SharePreferenceUtil {
             list.add(sp.getString(key + i, null));
         }
         return list;
+    }
+
+    public static boolean saveData(Context context, String key, String value) {
+        SharedPreferences sp = context.getSharedPreferences(publicPreferenceName, context.MODE_PRIVATE);
+        SharedPreferences.Editor mEdit1 = sp.edit();
+        mEdit1.putString(key, value);
+        return mEdit1.commit();
+    }
+
+    public static boolean saveData(Context context, String key, boolean value) {
+        SharedPreferences sp = context.getSharedPreferences(publicPreferenceName, context.MODE_PRIVATE);
+        SharedPreferences.Editor mEdit1 = sp.edit();
+        mEdit1.putBoolean(key, value);
+        return mEdit1.commit();
+    }
+
+
+    public static boolean getData(Context context, String key, boolean defaultValue) {
+        SharedPreferences sp = context.getSharedPreferences(publicPreferenceName, context.MODE_PRIVATE);
+        return sp.getBoolean(key, defaultValue);
     }
 }

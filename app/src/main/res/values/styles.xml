@@ -13,4 +13,43 @@
         <attr name="search_baground" format="reference" /><!--EditText  background-->
     </declare-styleable>
 
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/custom_dialog_bg</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+
+    <style name="CustomDialogText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#FF000000</item>
+    </style>
+
+    <style name="CustomDialogText.Title">
+        <item name="android:textSize">@dimen/base_main_text_size1</item>
+        <item name="android:textColor">@color/base_main_text_color1</item>
+    </style>
+
+    <style name="CustomDialogText.Msg">
+        <item name="android:textSize">@dimen/base_main_text_size2</item>
+        <item name="android:textColor">@color/base_main_text_color2</item>
+    </style>
+
+    <style name="CustomDialogText.Btn">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/custom_dialog_btn_bg</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/base_main_text_size2</item>
+    </style>
+
+    <style name="CustomDialogText.Btn.RIGHT_OK">
+        <item name="android:textColor">@color/colorRed</item>
+    </style>
+
+    <style name="CustomDialogText.Btn.LEFT_CANCEL">
+        <item name="android:textColor">@color/colorRed</item>
+    </style>
 </resources>

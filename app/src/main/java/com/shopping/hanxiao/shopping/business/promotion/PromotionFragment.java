@@ -1,6 +1,8 @@
 package com.shopping.hanxiao.shopping.business.promotion;
 
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +22,7 @@ import com.shopping.hanxiao.shopping.banner.BannerConfig;
 import com.shopping.hanxiao.shopping.banner.listener.OnBannerListener;
 import com.shopping.hanxiao.shopping.business.BaseFragment;
 import com.shopping.hanxiao.shopping.business.TopBannerData;
+import com.shopping.hanxiao.shopping.common.dialog.CustomDialog;
 import com.shopping.hanxiao.shopping.loader.GlideImageLoader;
 import com.shopping.hanxiao.shopping.rxretrofit.exception.ApiException;
 import com.shopping.hanxiao.shopping.rxretrofit.http.HttpManager;
@@ -29,6 +32,7 @@ import com.shopping.hanxiao.shopping.utils.ErrorUtils;
 import com.shopping.hanxiao.shopping.utils.ImageDownLoadUtil;
 import com.shopping.hanxiao.shopping.utils.NumberFormatUtil;
 import com.shopping.hanxiao.shopping.utils.ScreenInfoUtil;
+import com.shopping.hanxiao.shopping.utils.SharePreferenceUtil;
 import com.shopping.hanxiao.shopping.utils.StringUtils;
 import com.shopping.hanxiao.shopping.utils.TextViewUtils;
 import com.shopping.hanxiao.shopping.utils.ToastUtil;
@@ -68,6 +72,7 @@ public class PromotionFragment extends BaseFragment {
     private TextView mPromotionTv;
     private RecyclerView mHeightRecyclerView;
     private RecyclerView mNextHeightRecyclerView;
+    private FloatingActionButton mActionBtn;
     private HeightHorizontalAdapter mHeightHorizontalAdapter;
     private HeightHorizontalAdapter mNextHeightHorizontalAdapter;
     private ImageView[] mCustomImageViews = new ImageView[sCustomItems];
@@ -91,6 +96,9 @@ public class PromotionFragment extends BaseFragment {
         mPromotionAdapter = new PromotionAdapter(getActivity());
         mHeaderAndFooterWrapper = new HeaderAndFooterWrapper(mPromotionAdapter);
         mRefreshTv = (TextView) view.findViewById(R.id.refresh_tv);
+        mActionBtn = (FloatingActionButton) view.findViewById(R.id.action_button);
+        mActionBtn.setVisibility(SharePreferenceUtil.getData(getContext(), "removeAlways", false) ?
+                View.GONE : View.VISIBLE);
         setListeners();
         initRefreshLayout(view);
         initHeaderView(mHeaderAndFooterWrapper);
@@ -285,6 +293,39 @@ public class PromotionFragment extends BaseFragment {
                 mRefreshTv.setVisibility(View.GONE);
                 resetRequestStatus();
                 requestDataFromServer();
+            }
+        });
+
+        mActionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), PromotionSearchActivity.class));
+            }
+        });
+
+        mActionBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                CustomDialog dialog = new CustomDialog.DialogBuilder(getContext())
+                        .setTitle("温馨提示")
+                        .setMsg("确定移除悬浮搜索按钮吗？点击屏幕其他区域可取消操作。")
+                        .setCancelBtn("仅本次移除", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                SharePreferenceUtil.saveData(getContext(), "removeAlways", false);
+                                mActionBtn.setVisibility(View.GONE);
+                            }
+                        })
+                        .setOkBtn("永久移除", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                SharePreferenceUtil.saveData(getContext(), "removeAlways", true);
+                                mActionBtn.setVisibility(View.GONE);
+                            }
+                        })
+                        .build();
+                dialog.show();
+                return true;
             }
         });
     }

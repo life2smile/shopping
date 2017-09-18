@@ -26,6 +26,10 @@ public class HeaderAndFooterWrapper<T> extends RecyclerView.Adapter<RecyclerView
         mInnerAdapter = adapter;
     }
 
+    public RecyclerView.Adapter getRealAdapter() {
+        return mInnerAdapter;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (mHeaderViews.get(viewType) != null) {
@@ -57,7 +61,7 @@ public class HeaderAndFooterWrapper<T> extends RecyclerView.Adapter<RecyclerView
         return 0 <= position && position < array.size();
     }
 
-    private int getRealItemCount() {
+    public int getRealItemCount() {
         return mInnerAdapter.getItemCount();
     }
 

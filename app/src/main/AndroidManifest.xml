@@ -34,7 +34,15 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".common.search.SearchActivity"
+            android:name=".business.coupon.CouponSearchActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".business.discount.DiscountSearchActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".business.promotion.PromotionSearchActivity"
             android:screenOrientation="portrait" />
 
         <activity

@@ -24,10 +24,10 @@ import com.shopping.hanxiao.shopping.business.BaseFragment;
 import com.shopping.hanxiao.shopping.business.TopBannerData;
 import com.shopping.hanxiao.shopping.business.coupon.CouponFragment;
 import com.shopping.hanxiao.shopping.business.coupon.CouponItemTitle;
+import com.shopping.hanxiao.shopping.business.coupon.CouponSearchActivity;
 import com.shopping.hanxiao.shopping.business.titles.TitleApi;
 import com.shopping.hanxiao.shopping.common.WebViewActivity;
 import com.shopping.hanxiao.shopping.common.WebViewContext;
-import com.shopping.hanxiao.shopping.common.search.SearchActivity;
 import com.shopping.hanxiao.shopping.loader.GlideImageLoader;
 import com.shopping.hanxiao.shopping.rxretrofit.exception.ApiException;
 import com.shopping.hanxiao.shopping.rxretrofit.http.HttpManager;
@@ -130,7 +130,7 @@ public class CommodityFragment extends BaseFragment {
         mToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), SearchActivity.class));
+                startActivity(new Intent(getActivity(), CouponSearchActivity.class));
             }
         });
 
