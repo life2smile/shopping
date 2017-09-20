@@ -107,6 +107,9 @@ public class CouponFragment extends BaseFragment {
     @Override
     protected void requestDataFromServer() {
         CouponApi commodityApi = new CouponApi(mType, mBegin, mOffset);
+        if (mLoadMore) {
+            commodityApi.setShowProgress(true);
+        }
         HttpManager manager = new HttpManager(new HttpOnNextListener() {
             @Override
             public void onNext(String result, String method) {
