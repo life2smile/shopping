@@ -10,4 +10,5 @@ public class ItemBannerData {
     public String actionUrl;
     public double price;
     public String description;
+    public String remarks;
 }

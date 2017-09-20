@@ -66,7 +66,7 @@ public class PromotionItemAdapter extends RecyclerView.Adapter<PromotionItemAdap
         final CustomViewHolder customViewHolder = holder;
         final ItemBannerData data = mData.get(position);
         customViewHolder.mItemView.setTag(position);
-        customViewHolder.mDescTv.setText(data.description);
+        customViewHolder.mDescTv.setText(data.remarks);
         customViewHolder.mCouponPriceTv.setText(NumberFormatUtil.formatToRMB(data.price));
 
         RoundedCornersTransformation transformation = new RoundedCornersTransformation(mContext, ScreenInfoUtil.dpToPx(4), 0, RoundedCornersTransformation.CornerType.TOP);

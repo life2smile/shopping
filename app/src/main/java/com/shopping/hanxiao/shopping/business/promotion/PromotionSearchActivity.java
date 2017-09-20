@@ -71,4 +71,5 @@ public class PromotionSearchActivity extends BaseSearchActivity {
     public int spanNum() {
         return 2;
     }
+
 }

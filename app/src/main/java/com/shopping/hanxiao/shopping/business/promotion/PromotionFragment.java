@@ -29,6 +29,7 @@ import com.shopping.hanxiao.shopping.rxretrofit.http.HttpManager;
 import com.shopping.hanxiao.shopping.rxretrofit.listener.HttpOnNextListener;
 import com.shopping.hanxiao.shopping.utils.Constants;
 import com.shopping.hanxiao.shopping.utils.ErrorUtils;
+import com.shopping.hanxiao.shopping.utils.FloatActionButtonStatus;
 import com.shopping.hanxiao.shopping.utils.ImageDownLoadUtil;
 import com.shopping.hanxiao.shopping.utils.NumberFormatUtil;
 import com.shopping.hanxiao.shopping.utils.ScreenInfoUtil;
@@ -313,6 +314,7 @@ public class PromotionFragment extends BaseFragment {
                             @Override
                             public void onClick(View v) {
                                 SharePreferenceUtil.saveData(getContext(), "removeAlways", false);
+                                FloatActionButtonStatus.showWhenRunning = false;
                                 mActionBtn.setVisibility(View.GONE);
                             }
                         })
@@ -320,6 +322,7 @@ public class PromotionFragment extends BaseFragment {
                             @Override
                             public void onClick(View v) {
                                 SharePreferenceUtil.saveData(getContext(), "removeAlways", true);
+                                FloatActionButtonStatus.showWhenRunning = false;
                                 mActionBtn.setVisibility(View.GONE);
                             }
                         })
@@ -382,6 +385,14 @@ public class PromotionFragment extends BaseFragment {
                     }
                 })
                 .start();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mActionBtn != null) {
+            mActionBtn.setVisibility(FloatActionButtonStatus.showWhenRunning ? View.VISIBLE : View.GONE);
+        }
     }
 
     @Override

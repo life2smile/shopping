@@ -39,7 +39,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:paddingRight="@dimen/base_padding_small"
-                android:src="@mipmap/explore_search_close"
+                android:src="@drawable/explore_search_close"
                 android:visibility="gone" />
 
             <EditText
