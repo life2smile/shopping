@@ -9,7 +9,6 @@ import org.greenrobot.greendao.annotation.Transient;
 
 /**
  * apk下载请求数据基础类
- * Created by WZG on 2016/10/20.
  */
 
 @Entity

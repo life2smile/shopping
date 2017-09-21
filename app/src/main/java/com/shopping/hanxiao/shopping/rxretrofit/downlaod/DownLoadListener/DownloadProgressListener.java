@@ -3,7 +3,6 @@ package com.shopping.hanxiao.shopping.rxretrofit.downlaod.DownLoadListener;
 
 /**
  * 成功回调处理
- * Created by WZG on 2016/10/20.
  */
 public interface DownloadProgressListener {
     /**

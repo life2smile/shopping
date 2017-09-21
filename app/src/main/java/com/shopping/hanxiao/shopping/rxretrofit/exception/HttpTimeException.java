@@ -3,7 +3,6 @@ package com.shopping.hanxiao.shopping.rxretrofit.exception;
 /**
  * 运行时自定义错误信息
  * 自由添加错误，需要自己扩展
- * Created by WZG on 2016/7/16.
  */
 public class HttpTimeException extends RuntimeException {
     /*未知错误*/

@@ -11,7 +11,6 @@ import rx.functions.Func2;
 
 /**
  * retry条件
- * Created by WZG on 2016/10/17.
  */
 public class RetryWhenNetworkException implements Func1<Observable<? extends Throwable>, Observable<?>> {
     /* retry次数*/

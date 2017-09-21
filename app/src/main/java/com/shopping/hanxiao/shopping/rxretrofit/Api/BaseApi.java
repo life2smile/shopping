@@ -5,7 +5,6 @@ import rx.Observable;
 
 /**
  * 请求数据统一封装类
- * Created by WZG on 2016/7/16.
  */
 public abstract class BaseApi {
     /*是否能取消加载框*/

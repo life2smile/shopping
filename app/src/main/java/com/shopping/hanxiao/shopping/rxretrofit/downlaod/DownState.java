@@ -2,7 +2,6 @@ package com.shopping.hanxiao.shopping.rxretrofit.downlaod;
 
 /**
  * 下载状态
- * Created by WZG on 2016/10/21.
  */
 
 public enum  DownState {

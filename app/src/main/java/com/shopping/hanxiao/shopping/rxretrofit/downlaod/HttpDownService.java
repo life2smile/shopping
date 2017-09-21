@@ -9,7 +9,6 @@ import rx.Observable;
 
 /**
  * service-下载接口
- * Created by WZG on 2016/7/16.
  */
 public interface HttpDownService {
 

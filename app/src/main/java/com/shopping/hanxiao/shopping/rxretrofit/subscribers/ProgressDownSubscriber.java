@@ -19,7 +19,6 @@ import rx.functions.Action1;
  * 用于在Http请求开始时，自动显示一个ProgressDialog
  * 在Http请求结束是，关闭ProgressDialog
  * 调用者自己对请求数据进行处理
- * Created by WZG on 2016/7/16.
  */
 public class ProgressDownSubscriber<T> extends Subscriber<T> implements DownloadProgressListener {
     //弱引用结果回调

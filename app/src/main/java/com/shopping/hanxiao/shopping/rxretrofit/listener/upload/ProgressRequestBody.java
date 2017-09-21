@@ -15,7 +15,6 @@ import rx.functions.Action1;
 
 /**
  * 自定义回调加载速度类RequestBody
- * Created by WZG on 2016/10/20.
  */
 
 public class ProgressRequestBody extends RequestBody {

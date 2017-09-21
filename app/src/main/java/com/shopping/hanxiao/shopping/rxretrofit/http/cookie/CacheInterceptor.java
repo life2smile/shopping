@@ -13,7 +13,6 @@ import okhttp3.Response;
 
 /**
  * get缓存方式拦截器
- * Created by WZG on 2016/10/26.
  */
 
 public class CacheInterceptor implements Interceptor {

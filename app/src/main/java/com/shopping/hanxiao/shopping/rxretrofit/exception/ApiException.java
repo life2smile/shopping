@@ -2,7 +2,6 @@ package com.shopping.hanxiao.shopping.rxretrofit.exception;
 
 /**
  * 回调统一请求异常
- * Created by WZG on 2016/12/12.
  */
 
 public class ApiException extends Exception{

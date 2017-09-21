@@ -9,7 +9,6 @@ import rx.functions.Func1;
 
 /**
  * 异常处理
- * Created by WZG on 2017/3/23.
  */
 
 public class ExceptionFunc implements Func1<Throwable, Observable> {

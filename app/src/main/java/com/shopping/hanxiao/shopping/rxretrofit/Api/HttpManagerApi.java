@@ -11,7 +11,6 @@ import rx.Observable;
 
 /**
  * 请求数据统一封装类
- * Created by WZG on 2016/7/16.
  */
 public class HttpManagerApi extends BaseApi {
     private HttpManager manager;

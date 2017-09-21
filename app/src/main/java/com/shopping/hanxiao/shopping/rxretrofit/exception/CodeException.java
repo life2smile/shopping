@@ -10,7 +10,6 @@ import java.lang.annotation.RetentionPolicy;
  * 自定义错误code类型:注解写法
  * <p>
  * 可自由扩展
- * Created by WZG on 2016/12/12.
  */
 
 public class CodeException {

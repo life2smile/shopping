@@ -6,7 +6,6 @@ import org.greenrobot.greendao.annotation.Id;
 
 /**
  * post請求緩存数据
- * Created by WZG on 2016/10/26.
  */
 @Entity
 public class CookieResulte {
