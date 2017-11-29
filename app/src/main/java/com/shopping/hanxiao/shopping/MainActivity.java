@@ -4,10 +4,12 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
@@ -27,6 +29,7 @@ import com.shopping.hanxiao.shopping.rxretrofit.http.HttpManager;
 import com.shopping.hanxiao.shopping.rxretrofit.listener.HttpOnNextListener;
 import com.shopping.hanxiao.shopping.tablayout.TabFragmentPagerAdaper;
 import com.shopping.hanxiao.shopping.utils.MacUtil;
+import com.shopping.hanxiao.shopping.utils.TokenUtil;
 import com.shopping.hanxiao.shopping.utils.UriParse;
 import com.shopping.hanxiao.shopping.version.VersionApi;
 import com.shopping.hanxiao.shopping.version.VersionData;
@@ -148,6 +151,17 @@ public class MainActivity extends RxAppCompatActivity {
         String deviceId;
         try {
             TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                //在这之前已经主动申请过一次权限了，如果用户拒绝了，将不再申请任何权限。而是随机产生一个随机数作为用户标识。
+                return TokenUtil.instance().generateToken();
+            }
             deviceId = tm.getDeviceId();
         } catch (Exception e) {
             deviceId = MacUtil.getMac();
